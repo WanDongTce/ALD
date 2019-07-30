@@ -13,12 +13,12 @@
 </view>
 <!-- 入口 -->
 <view class="icon-nav">
-  <navigator class="icon-nav-left">
-    <image class="icon-img" src="../../images/icon-nav1@2x.png"></image>
+  <navigator url="/pages/dayuwen/pages/songdetail/songdetail" class="icon-nav-left">
+    <image class="icon-img" src="../../images/index/icon-nav1@2x.png"></image>
     <text class="nav-text">诗歌朗读</text>
   </navigator>
   <navigator class="icon-nav-right">
-    <image class="icon-img" src="../../images/icon-nav2@2x.png"></image>
+    <image class="icon-img" src="../../images/index/icon-nav2@2x.png"></image>
     <text class="nav-text">诗歌比赛</text>
   </navigator>
 </view>
@@ -33,15 +33,15 @@
       <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
       <view class="item-rel">
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/maikefeng@2x.png"></image>
           <text class="item-rel-icon-text">刘峰</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
           <text class="item-rel-icon-text">7:20</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
           <text class="item-rel-icon-text">12678</text>
         </view>
       </view>
@@ -50,15 +50,15 @@
       <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
       <view class="item-rel">
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/maikefeng@2x.png"></image>
           <text class="item-rel-icon-text">刘峰</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
           <text class="item-rel-icon-text">7:20</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
           <text class="item-rel-icon-text">12678</text>
         </view>
       </view>
@@ -67,15 +67,15 @@
       <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
       <view class="item-rel">
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/maikefeng@2x.png"></image>
           <text class="item-rel-icon-text">刘峰</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
           <text class="item-rel-icon-text">7:20</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
           <text class="item-rel-icon-text">12678</text>
         </view>
       </view>

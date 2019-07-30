@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/ailangdu/pages/index/index",
+    "pages/main/pages/index/index",
     "pages/main/pages/home/home",
     "pages/main/pages/shopping/shopping",
     "pages/main/pages/car/car",
@@ -308,7 +308,7 @@
         "selectedIconPath": "images/tabBtom/msg.png"
       },
       {
-        "pagePath": "pages/ailangdu/pages/index/index",
+        "pagePath": "pages/main/pages/index/index",
         "text": "朗读",
         "iconPath": "images/tabBtom/ald.png",
         "selectedIconPath": "images/tabBtom/ald-active.png"
