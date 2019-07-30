@@ -1,2 +1,84 @@
 <!--pages/ailangdu//pages/index/index.wxml-->
-<text>pages/ailangdu//pages/index/index.wxml</text>
+<!-- navigation -->
+<navbar title="爱朗读" isShowBack="{{false}}" url=""></navbar>
+<!-- swiper -->
+<view class="banner">
+  <swiper circular interval="{{3000}}" duration="{{1000}}" previous-margin="30" next-margin="30">
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+      <swiper-item>
+        <image mode="widthFix" src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 入口 -->
+<view class="icon-nav">
+  <navigator class="icon-nav-left">
+    <image class="icon-img" src="../../images/icon-nav1@2x.png"></image>
+    <text class="nav-text">诗歌朗读</text>
+  </navigator>
+  <navigator class="icon-nav-right">
+    <image class="icon-img" src="../../images/icon-nav2@2x.png"></image>
+    <text class="nav-text">诗歌比赛</text>
+  </navigator>
+</view>
+<!-- 列表 -->
+<scroll-view scroll-y style="height: 250px;">
+  <view class="action">
+    <text class="action-text action-active">热门</text>
+    <text class="action-text">推荐</text>
+  </view>
+  <view class="list">
+    <view class="list-item">
+      <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
+      <view class="item-rel">
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <text class="item-rel-icon-text">刘峰</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <text class="item-rel-icon-text">7:20</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <text class="item-rel-icon-text">12678</text>
+        </view>
+      </view>
+    </view>
+    <view class="list-item">
+      <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
+      <view class="item-rel">
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <text class="item-rel-icon-text">刘峰</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <text class="item-rel-icon-text">7:20</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <text class="item-rel-icon-text">12678</text>
+        </view>
+      </view>
+    </view>
+    <view class="list-item">
+      <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
+      <view class="item-rel">
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/maikefeng@2x.png"></image>
+          <text class="item-rel-icon-text">刘峰</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/shijian@2x.png"></image>
+          <text class="item-rel-icon-text">7:20</text>
+        </view>
+        <view class="item-span">
+          <image class="item-rel-icon" src="../../images/dianzan@2x.png"></image>
+          <text class="item-rel-icon-text">12678</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/ailangdu/pages/index/index",
     "pages/main/pages/home/home",
     "pages/main/pages/shopping/shopping",
     "pages/main/pages/car/car",
     "pages/main/pages/Shopdetails/Shopdetails",
-    
     "pages/main/pages/msg/msg",
     "pages/main/pages/find/find",
     "pages/main/pages/task/task",
@@ -270,13 +270,6 @@
         "pages/composition/composition",
         "pages/composition/compositionDetail/compositionDetail",
         "pages/emptypage/emptypage"
-        
-      ]
-    },
-    {
-      "root": "pages/ailangdu/",
-      "pages": [
-        "pages/ald/ald"
       ]
     }
   ],
@@ -293,7 +286,8 @@
     "van-transition": "/component/transition/index",
     "van-button": "/component/button/index",
     "van-loading": "/component/loading/index",
-    "van-progress": "/component/progress/index"
+    "van-progress": "/component/progress/index",
+    "navbar": "/component/navigation/navigation"
   },
   "tabBar": {
     "color": "#333",
@@ -314,10 +308,10 @@
         "selectedIconPath": "images/tabBtom/msg.png"
       },
       {
-        "pagePath": "pages/main/pages/shopping/shopping",
-        "text": "商铺",
-        "iconPath": "images/tabBtom/task2.png",
-        "selectedIconPath": "images/tabBtom/task.png"
+        "pagePath": "pages/ailangdu/pages/index/index",
+        "text": "朗读",
+        "iconPath": "images/tabBtom/ald.png",
+        "selectedIconPath": "images/tabBtom/ald-active.png"
       },
       {
         "pagePath": "pages/main/pages/find/find",
