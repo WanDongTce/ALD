@@ -1,0 +1,157 @@
+<view class="header"><text>朗读比赛</text><view class='reton_sun' bindtap='topshoop'>
+<image src='/pages/main/images/shopping/arowLt.png' class='reton'></image></view></view>
+<view class="banner">
+   <swiper indicator-dots="true">
+  
+    <swiper-item; wx:for="{{imglist}}">
+      <image src='{{item.image}}'></image>
+    </swiper-item>
+  </swiper>
+</view>
+<view class="time">
+  <view class="content_box">
+    <view class="name">
+      <text>活动时间</text>
+    </view>
+    <view class="text">
+      <text>{{active_time}}-{{end_time}}</text>
+    </view>
+  </view>
+</view>
+<view class="introduce">
+  <view class="content_box">
+    <view class="name">
+      <text>活动介绍</text>
+    </view>
+    <view class="text">
+      <text>{{introduction}}</text>
+    </view>
+  </view>
+</view>
+<view class="works">
+  <view class="title">
+    <text>参赛作品</text>
+  </view>
+  <view class="content_box">
+    <view class="list">
+      <view class="photo">
+        
+      </view>
+      <view class="text_box">
+        <view class="name">
+          <text>江城子-乙卯正月二十日夜记梦</text>
+        </view>
+        <view class="text">
+          <view class="author">
+            <image src="/pages/ailangdu/images/maikefeng.png"></image>
+            <text>刘风</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="shijian">
+            <image src="/pages/ailangdu/images/shijian.png"></image>
+            <text>07：12</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="dianzan">
+            <image src="/pages/ailangdu/images/dianzan.png"></image>
+            <text>156787</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="clearfix"></view>
+        </view>
+      </view>
+      <view class="clearfix"></view>
+    </view>
+      <view class="list">
+      <view class="photo">
+        
+      </view>
+      <view class="text_box">
+        <view class="name">
+          <text>江城子-乙卯正月二十日夜记梦</text>
+        </view>
+        <view class="text">
+          <view class="author">
+            <image src="/pages/ailangdu/images/maikefeng.png"></image>
+            <text>刘风</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="shijian">
+            <image src="/pages/ailangdu/images/shijian.png"></image>
+            <text>07：12</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="dianzan">
+            <image src="/pages/ailangdu/images/dianzan.png"></image>
+            <text>156787</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="clearfix"></view>
+        </view>
+      </view>
+      <view class="clearfix"></view>
+    </view>
+      <view class="list">
+      <view class="photo">
+        
+      </view>
+      <view class="text_box">
+        <view class="name">
+          <text>江城子-乙卯正月二十日夜记梦</text>
+        </view>
+        <view class="text">
+          <view class="author">
+            <image src="/pages/ailangdu/images/maikefeng.png"></image>
+            <text>刘风</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="shijian">
+            <image src="/pages/ailangdu/images/shijian.png"></image>
+            <text>07：12</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="dianzan">
+            <image src="/pages/ailangdu/images/dianzan.png"></image>
+            <text>156787</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="clearfix"></view>
+        </view>
+      </view>
+      <view class="clearfix"></view>
+    </view>
+  </view>
+</view>
+<view class="kechanyu {{kechanyu==1?'show_box':''}}">
+  <text>立即参与</text>
+</view>
+<view class="timeout {{kechanyu==2?'show_box':''}}">
+  <text>不在参赛时间内</text>
+</view>
+<view class="weichanyu {{weichanyu==2?'show_box':''}}">
+  <text>您未参与该比赛</text>
+</view>
+<view class="works_sun">
+      <view class="photo">
+        
+      </view>
+      <view class="text_box">
+        <view class="name">
+          <text>江城子-乙卯正月二十日夜记梦</text>
+        </view>
+        <view class="text">
+          <view class="author">
+            <image src="/pages/ailangdu/images/maikefeng.png"></image>
+            <text>刘风</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="dianzan">
+            <image src="/pages/ailangdu/images/dianzan.png"></image>
+            <text>156787</text>
+            <view class="clearfix"></view>
+          </view>
+           <view class="clearfix"></view>
+        </view>
+      </view>
+      <view class="clearfix"></view>
+</view>
