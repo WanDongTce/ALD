@@ -53,8 +53,8 @@
 				},
 				{
 					"id": 1,
-					"name": "爱朗读",
-					"pathName": "pages/main/pages/index/index",
+					"name": "pages/ailangdu/pages/Match/Match",
+					"pathName": "pages/ailangdu/pages/Match/Match",
 					"query": "",
 					"scene": null
 				}

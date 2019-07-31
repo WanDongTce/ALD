@@ -267,7 +267,9 @@
     {
       "root": "pages/ailangdu/",
       "pages": [
-        "pages/readList/readList"
+        "pages/readList/readList",
+        "pages/Match/Match",
+        "pages/activity/activity"
       ]
     },
     {
