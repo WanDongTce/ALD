@@ -3,11 +3,24 @@
   margin-top: 30rpx;
   margin-bottom: 30rpx;
 }
-.slide-image{
-  margin-left: 30rpx;
-  margin-right: 30rpx;
+.swiper-active{
+  height: 340rpx;
+}
+.image-box{
+  padding:0 20rpx;
+  overflow:hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 8rpx;
 }
+.slide-image{
+  /* margin-left: 30rpx;
+  margin-right: 30rpx; */
+  border-radius: 8rpx;
+  height: 300rpx;
+}
+
 .icon-nav{
   display: flex;
   justify-content: space-evenly;
@@ -66,7 +79,7 @@ display: flex;
   align-items: center;
 }
 .item-rel-icon{
-  width: 20rpx;
+  width: 28rpx;
   height: 28rpx;
 }
 .item-rel-icon-text{

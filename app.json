@@ -265,6 +265,12 @@
       ]
     },
     {
+      "root": "pages/ailangdu/",
+      "pages": [
+        "pages/readList/readList"
+      ]
+    },
+    {
       "root": "pages/link/",
       "pages": [
         "pages/composition/composition",

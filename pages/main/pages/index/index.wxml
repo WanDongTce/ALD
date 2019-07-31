@@ -3,10 +3,10 @@
 <navbar title="爱朗读" isShowBack="{{false}}" url=""></navbar>
 <!-- swiper -->
 <view class="banner">
-  <swiper circular interval="{{3000}}" duration="{{1000}}" previous-margin="30" next-margin="30">
-    <block wx:for="{{imgUrls}}" wx:key="*this">
-      <swiper-item>
-        <image mode="widthFix" src="{{item}}" class="slide-image" />
+  <swiper display-multiple-items='1' circular interval="{{2000}}" duration="{{1000}}" previous-margin="30" next-margin="30" bindchange="change">
+    <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
+      <swiper-item class="{{index==current?'swiper-active':'disabled'}}">
+        <view class="image-box"><image src="{{item.image}}" class="slide-image" /></view>
       </swiper-item>
     </block>
   </swiper>
@@ -23,11 +23,11 @@
   </navigator>
 </view>
 <!-- 列表 -->
-<scroll-view scroll-y style="height: 250px;">
-  <view class="action">
+<view class="action">
     <text class="action-text action-active">热门</text>
     <text class="action-text">推荐</text>
   </view>
+<scroll-view scroll-y>
   <view class="list">
     <view class="list-item">
       <text class="item-title">江城子-乙卯正月二十日夜记梦</text>

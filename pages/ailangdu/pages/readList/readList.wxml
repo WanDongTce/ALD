@@ -1,0 +1,74 @@
+<!--pages/ailangdu//pages/readList/readList.wxml-->
+<navbar title="选择诗歌朗读参赛" isShowBack="true" url=""></navbar>
+<view class="list">
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+  <view class="list-item">
+    <image class="list-item-avatar" src=""></image>
+    <view class="list-item-right">
+      <text class="title">水调歌头.明月几时有</text>
+      <view class="item-meta">
+        <text class="meta-reign">宋代</text>
+        <text class="meta-author">苏轼</text>
+      </view>
+    </view>
+  </view>
+</view>
