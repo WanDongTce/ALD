@@ -23,9 +23,10 @@
 
 .icon-nav{
   display: flex;
-  justify-content: space-evenly;
+  /* 微信不支持evenly */
+  justify-content: space-between;
   align-items: center;
-  padding: 30rpx 0;
+  padding: 30rpx;
 }
 .icon-nav-left{
   border-radius: 8rpx;
