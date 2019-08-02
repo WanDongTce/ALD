@@ -54,7 +54,7 @@
 				{
 					"id": 1,
 					"name": "pages/ailangdu/pages/readList/readList",
-					"pathName": "pages/main/pages/shopping/shopping",
+					"pathName": "pages/ailangdu/pages/readList/readList",
 					"query": "",
 					"scene": null
 				}

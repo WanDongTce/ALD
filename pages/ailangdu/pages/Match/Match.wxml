@@ -3,13 +3,13 @@
 
 <view class="btn">
   <view class="content_box">
-    <view class="brn_sun {{currentTab==0?'color':''}}" data-current="0" catchtap="current">
+    <view class="brn_sun {{currentTab==1?'color':''}}" data-current="1" catchtap="current">
       <text>进行中</text>
     </view>
-    <view class="brn_sun {{currentTab==1?'color':''}}" data-current="1" catchtap="current">
+    <view class="brn_sun {{currentTab==2?'color':''}}" data-current="2" catchtap="current">
       <text>评选中</text>
     </view>
-    <view class="brn_sun {{currentTab==2?'color':''}}" data-current="2" catchtap="current">
+    <view class="brn_sun {{currentTab==3?'color':''}}" data-current="3" catchtap="current">
       <text>已结束</text>
     </view>
     <view class="clearfix"></view>

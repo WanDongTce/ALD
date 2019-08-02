@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: 0,
+    currentTab: 1,
     list: []
   },
 
@@ -15,7 +15,7 @@ Page({
   onLoad: function (options) {
     console.log('on')
     var that = this
-    that.getlist()
+    that.getlist(1);
   },
   topshoop: function () {
     wx.navigateBack({
@@ -23,17 +23,18 @@ Page({
     })
   },
   current: function (e) {
-    var that = this
-    console.log(e.currentTarget.dataset.current)
+    var that = this;
+    var type = e.currentTarget.dataset.current;
+    //改变tab状态 筛选列表
+    that.getlist(type);
     that.setData({
-      currentTab: e.currentTarget.dataset.current
+      currentTab: type
     })
   },
-  getlist: function () {
-    console.log(app.userInfo.mobile)
+  getlist: function (type) {
     var that = this
     wx.request({
-      url: 'http://social.test.54xuebaxue.com/v9/activity/index',
+      url: app.requestUrl + 'v9/activity/index',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -43,6 +44,7 @@ Page({
         "token": app.userInfo.token,
         // "searchname": name,
         "app_source_type": app.app_source_type,
+        "type": parseInt(type)
       },
       success: function (res) {
 
@@ -61,11 +63,11 @@ Page({
 
   },
   to_activity: function (event) {
-    var postad = event.currentTarget.dataset.postad
-    console.log(postad)
+    var postad = event.currentTarget.dataset.postad;
+    var that = this;
+    console.log(postad, ' that.data.currentTab: ', that.data.currentTab)
     wx.navigateTo({
-
-      url: '/pages/ailangdu/pages/activity/activity?id=' + postad
+      url: `/pages/ailangdu/pages/activity/activity?id=${postad}&type=${that.data.currentTab}`
     })
   },
 

@@ -1,18 +1,48 @@
 // pages/ailangdu//pages/readList/readList.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: []
   },
-
+  getList: function(){
+    var that = this;
+    wx.request({
+      url: app.requestUrl + 'v14/chinese/poetry',
+      data: {
+        "mobile": app.userInfo.mobile,
+        "token": app.userInfo.token,
+        "app_source_type": app.app_source_type,
+        "searchname": ''
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          list: res.data.data[0].list
+        })
+      }
+    })
+  },
+  gorecorder: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var name = e.currentTarget.dataset.rname;
+    var author = e.currentTarget.dataset.author;
+    wx.navigateTo({
+      url: `/pages/dayuwen/pages/recorder/recorder?id=${id}&name=${name}&author=${author}`
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getList()
   },
 
   /**
