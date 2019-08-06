@@ -13,7 +13,7 @@ Page({
     imglist: [],
     playStatus: "",
     accessStatus: "",
-    played_data:[], //
+    played_data:{}, //
     project_list: [] //参赛作品
   },
 
@@ -24,6 +24,7 @@ Page({
     console.log(options)
     var that = this
     postId = options.id
+    console.log('id: ', postId);
     let type = options.type;
     that.getlist(); 
     that.getPlayedData(type);
@@ -52,15 +53,22 @@ Page({
         that.setData({
           project_list: list
         })
-        // that.setData({
-        //   active_time: res.data.data[0].item.active_time,
-        //   end_time: res.data.data[0].item.end_time,
-        //   introduction: res.data.data[0].item.introduction,
-        //   imglist: res.data.data[0].item.photoList,
-        //   playStatus: res.data.data[0].item.status,
-        //   accessStatus: res.data.data[0].item.is_participate,
-        // })
       }
+    })
+  },
+  //去听一听
+  toListen: function(e){
+    var luyin_id = e.currentTarget.dataset.luyin;
+    var luyin_praisenum = e.currentTarget.dataset.praisenum;
+    var audio_id = e.currentTarget.dataset.audio;
+    wx.navigateTo({
+      url: "/pages/ailangdu/pages/listen/listen?id=" + luyin_id + "&good=" + luyin_praisenum + "&scid=" + audio_id
+    })
+  },
+  //选择诗歌参加比赛
+  goReadList: function () {
+    wx.navigateTo({
+      url: `/pages/ailangdu/pages/readList/readList?activity_id=${this.data.playStatus}`,
     })
   },
   getlist: function () {

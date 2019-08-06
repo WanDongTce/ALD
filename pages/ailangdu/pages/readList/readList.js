@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    activity_id: 0,
     list: []
   },
   getList: function(){
@@ -34,15 +35,22 @@ Page({
     var id = e.currentTarget.dataset.id;
     var name = e.currentTarget.dataset.rname;
     var author = e.currentTarget.dataset.author;
+    var activity_id = this.data.activity_id;
+
+    //跳转
     wx.navigateTo({
-      url: `/pages/dayuwen/pages/recorder/recorder?id=${id}&name=${name}&author=${author}`
+      url: `/pages/ailangdu/pages/recorder/recorder?id=${id}&name=${name}&author=${author}&activity_id=${activity_id}`
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList()
+    console.log(options);
+    this.setData({
+      activity_id: options.activity_id
+    });
+    this.getList();
   },
 
   /**

@@ -269,7 +269,10 @@
       "pages": [
         "pages/readList/readList",
         "pages/Match/Match",
-        "pages/activity/activity"
+        "pages/activity/activity",
+        "pages/recorder/recorder",
+        "pages/confirmend/confirmend",
+        "pages/listen/listen"
       ]
     },
     {

@@ -57,7 +57,7 @@ display: flex;
 }
 .action-text.action-active{
   color: #333;
-  font-size: 36rpx;
+  font-size: 30rpx;
   font-weight: 600;
   position: relative;
 }
