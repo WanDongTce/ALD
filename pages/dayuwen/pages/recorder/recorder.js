@@ -59,7 +59,6 @@ Page({
     wx.setStorageSync('filePath', res.tempFilePath);
     console.log(11111)
     wx.navigateTo({
-      url: '/pages/dayuwen/pages/confirmend/confirmend?id=' + that.data.pageId,
       url: `/pages/dayuwen/pages/confirmend/confirmend?id=${that.data.pageId}&text=${that.data.text}`
     });
    

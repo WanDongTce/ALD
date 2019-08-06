@@ -14,7 +14,8 @@ Page({
     playStatus: "",
     accessStatus: "",
     played_data:{}, //
-    project_list: [] //参赛作品
+    project_list: [], //参赛作品
+    type: 0
   },
 
   /**
@@ -26,9 +27,9 @@ Page({
     postId = options.id
     console.log('id: ', postId);
     let type = options.type;
-    that.getlist(); 
-    that.getPlayedData(type);
-
+    this.setData({
+      type
+    })
   },
   //获取参赛作品列表
   getPlayedData: function(type){
@@ -111,7 +112,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getlist();
+    this.getPlayedData(this.data.type);
   },
 
   /**

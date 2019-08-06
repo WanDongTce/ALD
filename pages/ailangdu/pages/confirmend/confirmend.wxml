@@ -2,10 +2,10 @@
 <compontNavbar title="{{tabTitle}}" isShowBack="{{true}}" />
 <view class="progress-wrap">
 <view class="btn_swb"  wx:if="{{flg==true}}" bindtap='suspend'>
-  <image src="/pages/dayuwen/images/suspend.png"></image>
+  <image src="/pages/ailangdu/images/suspend.png"></image>
 </view>
  <view class='btn_swb' wx:else bindtap='suspend'>
-     <image src='/pages/dayuwen/images/start.png'></image>
+     <image src='/pages/ailangdu/images/start.png'  ></image>
   </view>
 	<progress activeColor="#4BACE2" class="progress" percent="{{percent}}" />
 	<text>{{currentTime}}</text>

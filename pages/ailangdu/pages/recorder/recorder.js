@@ -4,6 +4,7 @@ let recoderCurrentTimes = 0;
 let timer = null, asnycTextTimer = null, timerOut = null;
 const app = getApp();
 var luyin=false
+var stopAudio = false, once = true;
 Page({
   /**
    * 页面的初始数据
@@ -43,6 +44,7 @@ Page({
   },
   //结束录音 上传文件
   uploadFile: function () {
+    innerAudioContext.stop();
     //
     luyin=false
     rm.stop();
@@ -62,41 +64,7 @@ Page({
     wx.navigateTo({
       url: `/pages/ailangdu/pages/confirmend/confirmend?id=${that.data.pageId}&text=${that.data.text}&activity_id=${that.data.activity_id}`
     });
-   
-      //上传文件
-      // wx.uploadFile({
-      //   url: 'https://social.ajihua888.com/v14/public/upload', //仅为示例，非真实的接口地址
-      //   filePath: res.tempFilePath, // 小程序临时文件路径,
-      //   name: '$_FILES',
-      //   success (res){
-      //     let data = res.data;
-      //     //do something
-      //     data = JSON.parse(data);
-      //     let filelUrl = data.data[0].list[0].file_url;
-      //     console.log(filelUrl);
-      //     console.log(data);
-      //     //记录录音
-      //     wx.request({
-      //       url: 'https://social.ajihua888.com/v14/chinese/audio-add', //仅为示例，并非真实的接口地址
-      //       header: {
-      //         'content-type': 'application/x-www-form-urlencoded' // 默认值
-      //       },
-      //       method: 'POST',
-      //       data: {
-      //         "token": "e6b5bf2e8d749f32370e76091bc80ae9",
-      //         "mobile": 18640341140,
-      //         "app_source_type": 1,
-      //         audio_id: 2,
-      //         audioUrl: filelUrl
-      //       },
-      //       success(res) {
-      //         console.log(res.data);
-      //       }
-      //     });
-      //     //
-
-      //   }
-      // });
+  
     });
   },
   //录音持续时间
@@ -115,7 +83,9 @@ Page({
   startRecorder: function () {
     let that = this;
     luyin=true
-    innerAudioContext.stop();
+    // 开始录音 背景音乐播放 不显示时间
+    // innerAudioContext.stop();
+    stopAudio = true;
     //录音同步歌词时间
     that.recoderLastTime();
     //同步文字
@@ -334,11 +304,20 @@ Page({
         percent = parseInt(100 * percent);
         let lastTime = parseInt(innerAudioContext.duration) - parseInt(innerAudioContext.currentTime);
         lastTime = that.timeFormat(lastTime);
-        //
-        that.setData({
-          percent: percent,
-          currentTime: that.timeFormat(parseInt(innerAudioContext.currentTime))
-        });
+        // 改成背景音乐 开始录音停掉进度
+        if (!stopAudio){
+          that.setData({
+            percent: percent,
+            currentTime: that.timeFormat(parseInt(innerAudioContext.currentTime))
+          });
+        }else if(once){
+          that.setData({
+            percent: 0,
+            currentTime: 0
+          });
+          once = false;
+        }
+        
         console.log(percent)
         if (that.data.toView == currentId) {
           that.setData({
