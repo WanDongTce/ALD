@@ -21,3 +21,10 @@ page{background-color: #FAF9F9}
 .list_box .content_box .list .text_box{width: 622rpx;margin: 0 auto;margin-top: 34rpx}
 .list_box .content_box .list .text_box .name text{font-size: 32rpx;color: #333;height: 32rpx;line-height: 32rpx;display: inline-block}
 .list_box .content_box .list .text_box .time text{font-size: 26rpx;color: #333;height: 32rpx;line-height: 32rpx;display: inline-block;padding-bottom: 34rpx;color: #999}
+.visited{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
