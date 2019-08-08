@@ -72,8 +72,9 @@ Page({
   getSwipImgs: function () {
     var that = this;
     //正式使用改成11 爱朗读
-    network.getSwiperImgs(1, function (res) {
+    network.getSwiperImgs(11, function (res) {
       if (res.data.code == 200) {
+        console.log(res.data.data[0].list);
         that.setData({
           imgUrls: res.data.data[0].list
         });

@@ -97,9 +97,12 @@ border-bottom: 1rpx solid #E6E6E6;
 }
 .item-rel{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 20rpx;
+}
+.item-span{
+  flex: 1;
 }
 .item-title{
   font-size: 32rpx;

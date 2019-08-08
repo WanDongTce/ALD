@@ -37,48 +37,11 @@
           <text class="item-rel-icon-text">{{item.nickname}}</text>
         </view>
         <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
-          <text class="item-rel-icon-text">7:20</text>
-        </view>
-        <view class="item-span">
           <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
           <text class="item-rel-icon-text">{{item.praisenum}}</text>
         </view>
       </view>
     </view>
-    <view class="list-item">
-      <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
-      <view class="item-rel">
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/maikefeng@2x.png"></image>
-          <text class="item-rel-icon-text">刘峰</text>
-        </view>
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
-          <text class="item-rel-icon-text">7:20</text>
-        </view>
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
-          <text class="item-rel-icon-text">12678</text>
-        </view>
-      </view>
-    </view>
-    <view class="list-item">
-      <text class="item-title">江城子-乙卯正月二十日夜记梦</text>
-      <view class="item-rel">
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/maikefeng@2x.png"></image>
-          <text class="item-rel-icon-text">刘峰</text>
-        </view>
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/shijian@2x.png"></image>
-          <text class="item-rel-icon-text">7:20</text>
-        </view>
-        <view class="item-span">
-          <image class="item-rel-icon" src="../../images/index/dianzan@2x.png"></image>
-          <text class="item-rel-icon-text">12678</text>
-        </view>
-      </view>
-    </view>
+    
   </view>
 </scroll-view>
