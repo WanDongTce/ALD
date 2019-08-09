@@ -7,7 +7,7 @@ page{background-color: #fff}
 }
 .banner{width: 750rpx;height: 540rpx;position: relative}
 .banner .Compact{position: absolute; width: 482rpx;height: 482rpx;left: 136rpx;top: 80rpx}
-.banner .bd{position: absolute;top: 60rpx;left: 176rpx;background-color: red;width: 400rpx;height: 400rpx;
+.banner .bd{position: absolute;top: 60rpx;left: 176rpx;background-color: #eee;width: 400rpx;height: 400rpx;
 border-radius: 50%;overflow: hidden}
 .banner .bd02{position: absolute;top: 0;left: 0;width: 100%;height: 100%;filter: blur(18px);z-index: 1}
 .banner .btn_sun{position: absolute;top:236rpx;left: 346rpx;z-index: 3}
