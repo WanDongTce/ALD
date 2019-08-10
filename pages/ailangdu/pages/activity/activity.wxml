@@ -1,5 +1,5 @@
 <view class="header">
-  <text>朗读比赛</text>
+  <text>{{title}}</text>
   <view class='reton_sun' bindtap='topshoop'>
     <image src='/pages/main/images/shopping/arowLt.png' class='reton'></image>
   </view>
@@ -49,11 +49,6 @@
           <view class="author">
             <image src="/pages/ailangdu/images/maikefeng.png"></image>
             <text>{{item.nickname}}</text>
-            <view class="clearfix"></view>
-          </view>
-          <view class="shijian">
-            <image src="/pages/ailangdu/images/shijian.png"></image>
-            <text>07：12</text>
             <view class="clearfix"></view>
           </view>
           <view class="dianzan">

@@ -6,7 +6,8 @@ Page({
    */
   data: {
     currentTab: 1,
-    list: []
+    list: [],
+    title: ''
   },
 
   /**
@@ -64,10 +65,11 @@ Page({
   },
   to_activity: function (event) {
     var postad = event.currentTarget.dataset.postad;
+    var title = event.currentTarget.dataset.title;
     var that = this;
     console.log(postad, ' that.data.currentTab: ', that.data.currentTab)
     wx.navigateTo({
-      url: `/pages/ailangdu/pages/activity/activity?id=${postad}&type=${that.data.currentTab}`
+      url: `/pages/ailangdu/pages/activity/activity?id=${postad}&type=${that.data.currentTab}&title=${title}`
     })
   },
 

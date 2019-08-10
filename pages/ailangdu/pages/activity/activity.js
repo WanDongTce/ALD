@@ -15,7 +15,8 @@ Page({
     accessStatus: "",
     played_data:{}, //
     project_list: [], //参赛作品
-    type: 0
+    type: 0,
+    title: ''
   },
 
   /**
@@ -27,8 +28,10 @@ Page({
     postId = options.id
     console.log('id: ', postId);
     let type = options.type;
+    let title = options.title;
     this.setData({
-      type
+      type,
+      title
     })
   },
   //获取参赛作品列表

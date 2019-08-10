@@ -17,7 +17,7 @@
 </view>
 <view class="list_box">
   <view class="content_box">
-    <view class="list" catchtap="to_activity" wx:for="{{list}}" data-postad="{{item.id}}">
+    <view class="list" catchtap="to_activity" wx:for="{{list}}" data-postad="{{item.id}}" data-title="{{item.title}}">
     <block wx:if="{{item.is_participate==1}}">
       <image class="visited" src="../../images/played.png"></image>
     </block>
