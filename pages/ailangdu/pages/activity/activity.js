@@ -15,8 +15,9 @@ Page({
     accessStatus: "",
     played_data:{}, //
     project_list: [], //参赛作品
-    type: 0,
-    title: ''
+    type: 1,
+    title: '',
+    tabType: 2
   },
 
   /**
@@ -33,6 +34,13 @@ Page({
       type,
       title
     })
+  },
+  changeTab: function(e){
+    let type = e.currentTarget.dataset.type;
+    this.setData({
+      tabType: type
+    })
+    this.getPlayedData(type);
   },
   //获取参赛作品列表
   getPlayedData: function(type){
@@ -110,13 +118,20 @@ Page({
   onReady: function () {
 
   },
+  //活动结束
+  getPlayed: function(){
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getlist();
-    this.getPlayedData(this.data.type);
+    if (this.data.type!=3){
+      this.getPlayedData(1);
+    }else{
+      this.getPlayedData(this.data.tabType);
+    }
   },
 
   /**

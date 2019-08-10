@@ -14,9 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('on')
-    var that = this
-    that.getlist(1);
+
   },
   topshoop: function () {
     wx.navigateBack({
@@ -77,7 +75,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //录音多步返回
+    this.getlist(1);
   },
 
   /**

@@ -66,3 +66,18 @@ text-align: center;background-position: center;background-repeat: no-repeat}
 .works_sun   .text_box .text .dianzan  text{font-size: 24rpx;color: #999999;display: block;float: left}
 .works_sun   .text_box .text .dianzan{float: left;width: 33.3%}
 .works_sun   .text_box .text{margin-top: 15rpx}
+.tabs{
+  display: flex;
+  justify-content: center;
+  color: #666666;
+  font-size: 32rpx;
+}
+.tab-left{
+  margin-right: 50rpx;
+}
+.tab-right{
+  margin-left: 50rpx;
+}
+.tab-left-active{
+  color: #4BACE2;
+}
