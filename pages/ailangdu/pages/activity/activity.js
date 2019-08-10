@@ -72,7 +72,7 @@ Page({
   //选择诗歌参加比赛
   goReadList: function () {
     wx.navigateTo({
-      url: `/pages/ailangdu/pages/readList/readList?activity_id=${this.data.playStatus}`,
+      url: `/pages/ailangdu/pages/readList/readList?activity_id=${postId}`,
     })
   },
   getlist: function () {
