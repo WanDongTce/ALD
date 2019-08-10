@@ -4,7 +4,16 @@
   margin-bottom: 30rpx;
 }
 .swiper-active{
-  height: 340rpx;
+  height: 600rpx;
+  transform: scale(1.2);
+  transition: all .3s;
+}
+.swiper-item{
+  display: flex;
+  align-items: center;
+}
+.swiper-wrap{
+  height: 350rpx;
 }
 .image-box{
   padding:0 20rpx;
@@ -18,7 +27,6 @@
   /* margin-left: 30rpx;
   margin-right: 30rpx; */
   border-radius: 8rpx;
-  height: 300rpx;
 }
 
 .icon-nav{

@@ -11,7 +11,8 @@ Page({
     current: 1, //推荐、热门
     list: [],
     hasmore: true,
-    page: 1
+    page: 1,
+    currentSwiper: 0
  },
   //热门以及推荐
   changeTab: function(e){
@@ -67,6 +68,13 @@ Page({
     wx.navigateTo({
       url: "/pages/ailangdu/pages/listen/listen?id=" + luyin_id + "&good=" + luyin_praisenum + "&scid=" + audio_id
     })
+  },
+  // swiper
+  change: function (e) {
+    console.log(e.detail.current);
+    this.setData({
+      currentSwiper: e.detail.current
+    });
   },
   //banner列表
   getSwipImgs: function () {

@@ -69,6 +69,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     //分享调整
     let r = getCurrentPages();
     r = r[r.length - 1];
@@ -99,7 +100,29 @@ Page({
     wx.setStorageSync("goodID", id)
     goodnum=options.good
     console.log(app.userInfo);
-    scidsun = options.scid
+    scidsun = options.scid // 诗词id
+    //获取背景图片
+    wx.request({
+      url: app.requestUrl + 'v14/chinese/poetryinfo',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        "mobile": app.userInfo.mobile,
+        "token": app.userInfo.token,
+        // "searchname": name,
+        "app_source_type": app.app_source_type,
+        "read_id": scidsun
+      },
+      success: function (res) {
+        console.log('播放器背景图片： ',res.data.data[0].item.imgUrl);
+        that.setData({
+          thumbnail: res.data.data[0].item.imgUrl
+        })
+      }
+    })
+    //
     console.log("scidsun=" + options.scid)
     this.setData({
       id: id,
@@ -136,7 +159,7 @@ Page({
         let audioUrl = data.audioUrl;
         let lrcUrl = data.lrcUrl;
         goodnum = data.praisenum
-        console.log(data.isagree)
+        console.log('data.imgUrl:', data);
         that.setData({
           thumbnail: data.imgUrl,
           name: data.rname,
