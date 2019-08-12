@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: "all",
+    currentTab: 'all',
     id: '',
     //商家姓名
     name: "55",
@@ -20,105 +20,32 @@ Page({
     sopid: "",
     imgurl: [],
     type_list: [],
-    hh:""
+    number_sun: 0,
+    shangpu_null: ""
 
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that = this
-    // console.log(that.length)
-    var postId = options.id
-    console.log(postId)
-    that.setData({
-      id: postId
-    })
-    that.getlist();
-    that.getheight();
-    that.shangpin()
-  },
-  getheight:function(){
-    var wh;
-    var lh;
-    var hh;
-    var _this=this
-    wx.getSystemInfo({
-      success: function (res) {
-        wh = res.windowHeight
-       
-      },
-    })
-    var query = wx.createSelectorQuery();
-    //选择id
-    query.select('#mjltest').boundingClientRect()
-    query.exec(function (res) {
-      //res就是 所有标签为mjltest的元素的信息 的数组
-     
-      //取高度
-      lh = res[0].top
-       hh = wh - lh
-      _this.setData({
-         hh: hh
-       })
-    })
-    
-
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-  getlist: function () {
-    var _this = this
+  getcar: function () {
+    var that = this;
     network.POST({
-      url: 'v13/bus-shop-goods/bus-info',
+      url: 'v13/shop-cart/list',
       params: {
         "mobile": app.userInfo.mobile,
-        "token": app.userInfo.token,
-        "bid": 50,
-
+        "token": app.userInfo.token
       },
-      success: function (res) {
 
+      success: function (res) {
+        // console.log(app.userInfo.token)
         wx.hideLoading();
         if (res.data.code == 200) {
-          var inf = res.data.data[0].item
-        console.log(inf)
-          var list_weix = []
-          var type = []
-
-          for (let i = 0; i < inf.images.length; i++) {
-
-            var pbj = { url: inf.images[i].url }
-            list_weix.push(pbj)
-
-          }
-
-          for (let i = 0; i < inf.category_list.length; i++) {
-
-            var pbj = { id: inf.category_list[i].id, name: inf.category_list[i].name }
-            type.push(pbj)
-
-          }
-
-          _this.setData({
-            name: inf.name,
-            pic: inf.pic,
-            address: inf.address,
-            imgurl: list_weix,
-            type_list: type
+          var a = res.data.data[0].list.length;
+          console.log(a)
+          that.setData({
+            number_sun: a
           })
-
         } else {
           wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 1000
-          })
+            title: res.data.message
+          });
         }
       },
       fail: function () {
@@ -131,56 +58,17 @@ Page({
       }
     });
   },
-
-  shangpin: function () {
-    var _this = this
-    network.POST({
-
-      url: 'v13/shop-goods/index',
-      params: {
-        "mobile": app.userInfo.mobile,
-        "token": app.userInfo.token,
-        "bid": 50,
-        "page":page
-
-      },
-      success: function (res) {
-
-        wx.hideLoading();
-
-        if (res.data.code == 200) {
-
-          var a = res.data.data[0].list;
-
-          for (var i = 0; i < a.length; i++) {
-            yucunlisr.push(a[i])
-          }
-          _this.setData({
-            list: yucunlisr,
-            list_sun: yucunlisr
-          })
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 1000
-          })
-        }
-      },
-      
-      fail: function () {
-        wx.hideLoading();
-        wx.showToast({
-          title: '服务器异常',
-          icon: 'none',
-          duration: 1000
-        })
-      }
-    });
+  topshoop: function () {
+    wx.navigateBack({
+      delta: 1
+    })
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  topshoopsun: function () {
+    wx.navigateTo({
+      // url: '/pages/main/pages/Shopdetails/Shopdetails'  //跳转详情页  切记配置app.json文件 
+      url: '/pages/main/pages/car/car'
+    })
+  },
   addCount: function (e) {
 
     const index = e.currentTarget.dataset.id;
@@ -284,13 +172,181 @@ Page({
       }
     });
   },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    var postId = options.id
+
+    that.setData({
+      id: postId
+    })
+    that.getlist()
+    that.shangpin()
+    // that.shangpu()
+
+
+
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+  getlist: function () {
+    var _this = this
+    network.POST({
+      url: 'v13/bus-shop-goods/bus-info',
+      params: {
+        "mobile": app.userInfo.mobile,
+        "token": app.userInfo.token,
+        "bid": 50,
+
+      },
+      success: function (res) {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          var inf = res.data.data[0].item
+          console.log(inf)
+          var list_weix = []
+          var type = []
+
+          for (let i = 0; i < inf.images.length; i++) {
+
+            var pbj = { url: inf.images[i].url }
+            list_weix.push(pbj)
+
+          }
+
+          for (let i = 0; i < inf.category_list.length; i++) {
+
+            var pbj = { id: inf.category_list[i].id, name: inf.category_list[i].name }
+            type.push(pbj)
+
+          }
+
+          _this.setData({
+            name: inf.name,
+            pic: inf.pic,
+            address: inf.address,
+            imgurl: list_weix,
+            type_list: type
+          })
+
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器异常',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    });
+  },
+  shangpu: function (e) {
+    var that = this
+    network.POST({
+
+      url: 'v14/public/test',
+      params: {
+        "mobile": app.userInfo.mobile,
+        "token": app.userInfo.token,
+        "num": 1,
+        "s_id": 32
+
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          console.log(res.data.data[0].test)
+          that.setData({
+            // shangpu_null: res.data.data[0].test
+            shangpu_null: res.data.data[0].test
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器异常',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    });
+  },
+  shangpin: function (page) {
+    var _this = this
+    network.POST({
+
+      url: 'v13/shop-goods/index',
+      params: {
+        "mobile": app.userInfo.mobile,
+        "token": app.userInfo.token,
+        "bid": 50,
+        "page": page
+
+
+      },
+
+      success: function (res) {
+
+        wx.hideLoading();
+
+        if (res.data.code == 200) {
+
+          var a = res.data.data[0].list;
+
+          for (var i = 0; i < a.length; i++) {
+            yucunlisr.push(a[i])
+          }
+          _this.setData({
+
+            list_sun: yucunlisr
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器异常',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    });
+  },
   bttype: function (e) {
     var dataindex = e.currentTarget.dataset.index;
     var dataid = e.currentTarget.dataset.id;
-    if (dataindex == undefined){
-      dataindex="all"
+    console.log(dataid)
+    if (dataindex == undefined) {
+      dataindex = "all"
     }
-    
+
     var _this = this
     network.POST({
 
@@ -335,54 +391,46 @@ Page({
     });
   },
 
-  topshoop: function () {
-    wx.navigateTo({
-      // url: '/pages/main/pages/Shopdetails/Shopdetails'  //跳转详情页  切记配置app.json文件 
-      url: '/pages/main/pages/car/car'
-    })
-  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
   onShow: function () {
-    
+    this.getcar()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  scrollToLower:function(){
-    console.log(page)
-    page = page + 1
-   
-    this.shangpin(page)
-  },
   onReachBottom: function () {
-  
+    page = page + 1
+    this.shangpin(page)
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })
