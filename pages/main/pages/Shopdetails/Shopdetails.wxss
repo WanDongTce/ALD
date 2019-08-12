@@ -1,7 +1,7 @@
 .header{position: fixed;left: 0;top: 0}
 .clearfix{ clear: both}
 page{background-color: #fff}
-.reton{width: 18rpx;height: 32rpx;z-index: 999999;display: block;padding-top: 40rpx;margin: 0 auto}
+.reton{width: 50rpx;height: 50rpx;z-index: 999999;display: block;padding-top: 28rpx;margin: 0 auto}
 .reton_sun{width: 100rpx;height: 100rpx;position: absolute;left: 4rpx;top: 30rpx;}
 .header{position: fixed;left: 0;top: 0;line-height: 13vh;height: 10vh;display: block;width: 100%;background-color: #fff;border: 1px solid #dfdfdf}
 .header text{margin-left: 100rpx}

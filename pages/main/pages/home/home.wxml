@@ -21,7 +21,7 @@
         <image src='../../../../images/arrow_switch.png' class='arrow_switch'></image>
         <view class='switch_text c_gf'>学生端</view>
     </view>
-    <view class="navigation-tit">大语文朗读</view>
+    <view class="navigation-tit">思见套</view>
 </view>
 
 

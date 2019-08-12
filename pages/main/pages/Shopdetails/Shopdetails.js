@@ -79,7 +79,7 @@ Page({
       params: {
         "mobile": app.userInfo.mobile,
         "token": app.userInfo.token,
-        "bid": this.data.id,
+        "bid": 50,
 
       },
       success: function (res) {
@@ -140,7 +140,7 @@ Page({
       params: {
         "mobile": app.userInfo.mobile,
         "token": app.userInfo.token,
-        "bid": this.data.id,
+        "bid": 50,
         "page":page
 
       },
@@ -298,7 +298,7 @@ Page({
       params: {
         "mobile": app.userInfo.mobile,
         "token": app.userInfo.token,
-        "bid": this.data.id,
+        "bid": 50,
         "cb_id": dataid
 
       },
@@ -336,8 +336,9 @@ Page({
   },
 
   topshoop: function () {
-    wx.navigateBack({
-      delta: 1
+    wx.navigateTo({
+      // url: '/pages/main/pages/Shopdetails/Shopdetails'  //跳转详情页  切记配置app.json文件 
+      url: '/pages/main/pages/car/car'
     })
   },
   onShow: function () {

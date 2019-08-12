@@ -54,7 +54,7 @@ Page({
     onShow: function () {
       if (this.data.share) {
         wx.switchTab({
-          url: '/pages/main/pages/index/index'
+          url: '/pages/main/pages/home/home'
         });
       }
     },
@@ -147,7 +147,7 @@ Page({
                             })
                           } else {
                             wx.switchTab({
-                              url: '/pages/main/pages/index/index'
+                              url: '/pages/main/pages/home/home'
                             });
                           }
                         } else {
