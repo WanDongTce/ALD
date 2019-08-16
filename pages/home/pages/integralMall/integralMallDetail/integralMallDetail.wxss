@@ -73,7 +73,7 @@ swiper image{
 }
 .point{
     font-size: 36rpx;
-    color: #4bace2;
+    color: #48ba49;
 }
 .hit{
     font-size: 24rpx;

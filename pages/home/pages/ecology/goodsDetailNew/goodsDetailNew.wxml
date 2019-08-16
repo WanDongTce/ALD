@@ -23,7 +23,7 @@
         <view class="info-tip">
             <view class="tip">
                 <image src="../../../../../images/tip-icon.png" class="tip-icon"></image>
-                <text class="tip-text">包邮</text>
+                <text class="tip-text">免费配送</text>
             </view>
             <view class="tip">
                 <image src="../../../../../images/tip-icon.png" class="tip-icon"></image>
@@ -60,7 +60,7 @@
         </view>
         <view class="no-comment" wx:else>暂时还没有评论哦~</view>
     </view>
-    <view class="recommend-box">
+    <!-- <view class="recommend-box">
         <view class="h2">
             <view class="h2-lt">
                 <view class="rect-icon"></view>
@@ -74,7 +74,7 @@
                 <view class="slide-point">￥{{item.price}}</view>
             </navigator>            
         </scroll-view>
-    </view>
+    </view> -->
     <view class="detail-box">
         <view class="h2">
             <view class="h2-lt">
