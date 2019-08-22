@@ -75,7 +75,7 @@
             </navigator>            
         </scroll-view>
     </view> -->
-    <!-- <view class="detail-box">
+    <view class="detail-box">
         <view class="h2">
             <view class="h2-lt">
                 <view class="rect-icon"></view>
@@ -85,7 +85,7 @@
         <view class="wxParse">
             <template is="wxParse" data="{{wxParseData: description.nodes}}"></template>
         </view>
-    </view> -->
+    </view>
     <!-- <view class="bottom-box">
         <view class="botm-cont">
             <view class="concat" catchtap="makePhone" data-phone="{{tel}}">
