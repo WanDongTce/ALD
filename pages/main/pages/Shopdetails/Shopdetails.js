@@ -75,6 +75,7 @@ Page({
     let carts = this.data.list_sun;
     let sid = ""
     carts = carts.map(function (item) {
+
       if (item.id == index) {
         item.cart_num = parseInt(item.cart_num) + 1
         sid = item.s_id
@@ -86,6 +87,7 @@ Page({
     this.setData({
       list_sun: carts
     })
+   
     network.POST({
 
       url: 'v13/shop-cart/add',
