@@ -193,7 +193,7 @@ swiper navigator {
   margin:16rpx 0 39rpx;
 }
 /*收费提示*/
-.center {
+.center{
   width: 80%;
   text-align: center;
   box-sizing: border-box;
@@ -205,10 +205,30 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding-bottom: 40rpx;
+position: relative;
 }
 .popwrap-img{
   margin-bottom: 30rpx;
   overflow: hidden;
+}
+.text{
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #333;
+}
+.text .num{
+  color:#16b7ff;
+  font-size: 80rpx;
+  font-weight: 700;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+}
+.popwrap-close{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  height: 32rpx;
+  width: 32rpx;
 }
 .pop-text{
   font-size: 28rpx;
@@ -234,3 +254,33 @@ button.pop-btn::after{
 .isvip{
   overflow: hidden;
 }
+
+.search{
+  background-color:#f4f4f4;
+  margin-left:40rpx;
+  margin-right: 40rpx;
+  height:58rpx;
+  border-radius: 29rpx;
+}
+.search image{
+  width:30rpx;
+  height:30rpx;
+  margin:0 17rpx 0 26rpx;
+}
+.search input{
+  color:a1a1a1;
+  font-size:26rpx;
+  display:block;
+  width:510rpx;
+  height:58rpx;
+  line-height:58rpx;
+}
+.placeholder{
+  color:a1a1a1;
+  font-size:26rpx;
+}
+.top_fix .content_box{width: 700rpx;margin: 0 auto;height: 65rpx; background-color: #e6e6e6;
+border-radius:32rpx }
+.top_fix .content_box text{display: inline-block;font-size: 28rpx;line-height: 65rpx;margin-left: 21rpx;
+color: #b0b0b0;padding-left: 54rpx;background-image: url(http://m.54xuebaxue.com/wx_img/img/XBX/search.png);
+background-repeat: no-repeat;background-position: left center;background-size: 39rpx 39rpx;}

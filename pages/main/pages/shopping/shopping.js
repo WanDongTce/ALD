@@ -10,6 +10,9 @@ Page({
   data: {
     number_sun:0
   },
+  goBack: function(){
+    wx.navigateBack();
+  },
   getList: function (page) {
     var that = this;
     var img;
@@ -41,6 +44,7 @@ Page({
             if (res.data.code == 200) {
 
               var a = res.data.data[0].list;
+              console.log(res)
               for (var i = 0; i < a.length; i++) {
                 yucunlisr.push(a[i])
               }
@@ -123,14 +127,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getcar()
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.customMethod()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
-    
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
   },
 
   /**

@@ -1,4 +1,5 @@
 const network = require("../../../../../utils/main.js");
+const moment = require("../../../../../utils/moment.js");
 const app = getApp();
 var teacherid = '';
 var pagesize = 20;
@@ -15,7 +16,9 @@ Page({
         curTabIndex: 0,
         detail: '',
         list: [],
-        coursecount:0
+      freeTime: 0, //新注册号免费试用
+      videoId: 0,
+      videoPic: ''
     },
     tabFun: function (e) {
         // console.log(e);
@@ -32,6 +35,8 @@ Page({
         var that = this;
         that.getDetail();
         that.getList(); 
+      that.component = that.selectComponent("#component")
+      that.component.customMethod()
     },
     getDetail: function () {
         var that = this;
@@ -86,15 +91,13 @@ Page({
             success: function (res) {
                 // console.log(res);
                 wx.hideLoading();
-              if (res.data.code == 200) {
+                if (res.data.code == 200) {
                     var a = res.data.data[0].list;
-                    var b = res.data.data[0].count;
                     if (flag) {
                         a = that.data.list.concat(a);
                     }
                     that.setData({
                         list: a,
-                        coursecount:b,
                         showEmpty: a.length == 0 ? true : false
                     });
 
@@ -146,7 +149,13 @@ Page({
     this.toggle('middle');
   },
   noBuy: function () {
+    let that = this;
     this.toggle('middle');
+    if (this.freeTry()) {
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + that.data.videoId + '&videopic=' + that.data.videoPic,
+      });
+    }
   },
   goBuy: function () {
     wx.navigateTo({
@@ -154,24 +163,51 @@ Page({
     });
   },
   //判断会员是否过期
-  memberExpires(e) {
-    var that = this;
-    network.memberExpires(function (res) {
-      that.toggle('middle');
-    }, function (res) {
-      wx.navigateTo({
-        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.id
-      })
-    });
-  },
+
   onHide: function () {
     this.setData({
       show: {
         middle: false
       }
     });
+    var that = this
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
+  },
+  memberExpires(e) {
+    var that = this;
+    network.memberExpires(function (res) {
+      that.setData({
+        videoId: e.currentTarget.dataset.myid,
+        videoPic: e.currentTarget.dataset.videopic
+      });
+      that.freeTry();
+      that.toggle('middle');
+    }, function (res) {
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
+      })
+    });
   },
     toCourseDetail: function (e) {
-        this.memberExpires(e);
+      this.memberExpires(e);
+    },
+  freeTry: function () {
+    let that = this;
+    let createTime = app.userInfo.create_time;
+    let start = moment(createTime);
+    let end = moment();
+    let freeTime = end.diff(start, 'days');
+    if (freeTime < 3) {
+      that.setData({
+        freeTime: (3 - freeTime)
+      });
+      return true;
+    } else {
+      //免费试用结束
+      return false;
     }
+
+  },
 })

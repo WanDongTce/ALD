@@ -1,4 +1,3 @@
-const app = getApp();
 // 以iphone6为设计稿，计算相应的缩放比例
 const { windowWidth, windowHeight } = wx.getSystemInfoSync();
 function createRpx2px() {
@@ -218,13 +217,11 @@ Component({
     },
     loadNetworkImage(loadtype, gametype) {
       //loadtype 0为本地图片，1为网络图片
-      let ercodeUrl = app.requestUrl +`v14/public/qrcode?gameurl=${this.properties.gameurl}`;
-      let imageUrl = app.requestUrl +'v14/public/wx-images';
+      let ercodeUrl = `https://social.54xuebaxue.com/v14/public/qrcode?gameurl=${this.properties.gameurl}`;
+      let imageUrl = 'https://social.54xuebaxue.com/v14/public/wx-images';
       if (gametype == 1) {
         // QRImageX = canvasW * 0.6;
         // QRImageY = canvasH * 0.63;
-        QRImageX = canvasW / 2 - radius;
-        QRImageY = canvasH / 2 + radius / 2 - 10;
         titleH = rpx2px(200 * 2);
         titleColor = '#fff';
       } else if (gametype == 2) {

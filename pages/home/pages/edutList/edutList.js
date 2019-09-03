@@ -3,9 +3,6 @@ var app = getApp();
 
 Page({
     data: {
-      show: {
-        middle: false
-      },
         base: '../../../../',
         IMGURL: app.imgUrl,
         teacList: '',
@@ -15,6 +12,17 @@ Page({
         course: '',
         imgUrls: []
     },
+  onShow: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.customMethod()
+  },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
+  },
     onLoad: function (options) {
         this.compontNavbar = this.selectComponent("#compontNavbar");
         var that = this;
@@ -114,8 +122,10 @@ Page({
       })
     },
     tz_detail: function (e) {   
-      this.memberExpires(e);
       // console.log(e.currentTarget.dataset)  
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
+      })
     },
     getSwipImgs: function () {
       var that = this;
@@ -128,43 +138,4 @@ Page({
         }
       });
     },
-  //提示会员是否到期
-  onTransitionEnd() {
-    // console.log(`You can't see me 🌚`);
-  },
-  toggle(type) {
-    this.setData({
-      [`show.${type}`]: !this.data.show[type]
-    });
-  },
-
-  togglePopup() {
-    this.toggle('middle');
-  },
-  noBuy: function () {
-    this.toggle('middle');
-  },
-  goBuy: function () {
-    wx.navigateTo({
-      url: '/pages/my/pages/memberRenewalNewPay/memberRenewalNewPay'
-    });
-  },
-  //判断会员是否过期
-  memberExpires(e) {
-    var that = this;
-    network.memberExpires(function (res) {
-      that.toggle('middle');
-    }, function (res) {
-      wx.navigateTo({
-        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
-      })
-    });
-  },
-  onHide: function () {
-    this.setData({
-      show: {
-        middle: false
-      }
-    });
-  },
 })

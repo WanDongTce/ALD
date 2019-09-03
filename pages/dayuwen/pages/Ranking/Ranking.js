@@ -90,7 +90,6 @@ Page({
         "read_id": postId
       },
       success: function (res) {
-        console.log(res.data.data[0].item);
         wx.setStorageSync("pic", res.data.data[0].item.imgUrl)
         wx.setStorageSync("rname", res.data.data[0].item.rname)
         var text = res.data.data[0].item.cname + "" + res.data.data[0].item.readname
@@ -221,7 +220,15 @@ Page({
     var that = this
     that.Recitation(postId)
     that.goodlist(postId)
+    that.component = that.selectComponent("#component")
+    that.component.customMethod()
 
+  },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
   }
 })
 

@@ -6,21 +6,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
 	"appid": "wx769af24e0670b6b5",
-	"projectname": "%E5%AD%A6%E9%9C%B8%E5%AD%A6-%E5%AD%A6%E7%94%9F%E7%AB%AF",
+	"projectname": "%E4%B8%AD%E7%9D%BF%E5%AD%A6%E7%94%9F%E7%AB%AF%EF%BC%88%E6%AD%A3%E5%BC%8F%EF%BC%89",
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
@@ -42,20 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "会员续费",
-					"pathName": "pages/my/pages/memberRenewalNewPay/memberRenewalNewPay",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/ailangdu/pages/readList/readList",
-					"pathName": "pages/ailangdu/pages/readList/readList",
-					"query": "",
+					"name": "pages/common/login/login",
+					"pathName": "pages/common/login/login",
+					"query": "province_id=6&city_id=37&district_id=439&schoolid=109",
 					"scene": null
 				}
 			]

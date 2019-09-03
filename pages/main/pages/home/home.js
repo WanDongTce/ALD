@@ -1,4 +1,5 @@
 const network = require("../../../../utils/main.js");
+const moment = require("../../../../utils/moment.js");
 const app = getApp();
 var page = 1;
 var hasmore = '';
@@ -27,8 +28,10 @@ Page({
         showEmpty: false,
         
         renew_content:'',
-
-        
+      freeTime: 0, //新注册号免费试用
+      videoId: 0,
+      videoPic: '',
+      showTab: true  
     },
     onLoad: function(options) {
         // console.log(app);     
@@ -39,7 +42,13 @@ Page({
         that.getSwipImgs();
         this.setData({
             idname:app.idname
-        });       
+        });
+      // console.log('app.userInfo',app.userInfo);   
+      if(app.userInfo.mobile=='18647993992'){
+        this.setData({
+          showTab: false
+        })
+      }    
     },
     tz_little: function () {
         // console.log('111')
@@ -58,6 +67,9 @@ Page({
             this.setData({
                 title: app.userInfo.register_community_name
             })
+          var that = this;
+          that.component = that.selectComponent("#component")
+          that.component.customMethod()
         }
         
         
@@ -122,7 +134,7 @@ Page({
     judge:function(){
         var that = this;
         wx.navigateTo({
-          url: '/pages/home/pages/zuoyeNew/zuoyeNew',
+            url: '/pages/home/pages/zuoyeNew/zuoyeNew',
         })
 
         // wx.navigateTo({
@@ -224,7 +236,13 @@ Page({
     this.toggle('middle');
   },
   noBuy: function () {
+    let that = this;
     this.toggle('middle');
+    if(this.freeTry()){
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + that.data.videoId + '&videopic=' + that.data.videoPic,
+      });
+    }
   },
   goBuy: function () {
     wx.navigateTo({
@@ -239,7 +257,12 @@ Page({
         middle: false
       }
     });
+    var that = this
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
   },
+    
     getActy() {
         var that = this;
         network.getActy(function(res) {
@@ -521,12 +544,35 @@ Page({
         
     },
 
-    tz_detail: function (e) {
-        this.memberExpires(e);
-    },
+  tz_detail: function (e) {
+    console.log('注册时间：',app.userInfo.create_time)
+    this.memberExpires(e);
+  },
+  freeTry: function(){
+    let that = this;
+    let createTime = app.userInfo.create_time;
+    let start = moment(createTime);
+    let end = moment();
+    let freeTime = end.diff(start, 'days');
+    if(freeTime<3){
+      that.setData({
+        freeTime: (3 - freeTime)
+      });
+      return true;
+    } else {
+      //免费试用结束
+      return false;
+    }
+
+  },
   memberExpires(e) {
     var that = this;
     network.memberExpires(function (res) {
+      that.setData({
+        videoId: e.currentTarget.dataset.myid,
+        videoPic: e.currentTarget.dataset.videopic
+      });
+      that.freeTry();
       that.toggle('middle');
     }, function (res) {
       wx.navigateTo({

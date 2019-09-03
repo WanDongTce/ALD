@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "empty": "/component/empty/empty",
-    "compontNavbar": "/component/navigation/navigation"
-  }
-}

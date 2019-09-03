@@ -12,7 +12,7 @@
   </view>
 </view>
 
-<image src='http://m.54xuebaxue.com/wx_img/img/tuiguang.png' class='tgbanner' mode='aspectFill'></image>
+<image src='../../../../images/tuiguang.png' class='tgbanner' mode='aspectFill'></image>
 <view class='slogan1'>利国利民的互联网共享教育</view>
 <view class='slogan2'>立即加入学霸学教育</view>
 <view class="container-box">

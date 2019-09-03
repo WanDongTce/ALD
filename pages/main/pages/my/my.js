@@ -6,21 +6,35 @@ Page({
         base: '../../../../',
         IMGURL: app.imgUrl,
         info: '',
-        msgCount: 0
+        msgCount: 0,
+        showTab: true
     },
     onLoad(){
         this.compontNavbar = this.selectComponent("#compontNavbar");
+      if (app.userInfo.mobile == '18647993992') {
+        this.setData({
+          showTab: false
+        })
+      }  
     },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
+  },
     onShow: function () {
         // console.log(app);
         var that = this;
         that.getUserInfo(); 
         that.getMsg();
+      that.component = that.selectComponent("#component")
+      that.component.customMethod()
     },
     getUserInfo: function () {
         var that = this;
         network.getUserInfo(function(res){
-            // console.log(res);
+            console.log(res);
             wx.hideLoading();
             if (res.data.code == 200) {
                 var a = res.data.data[0].item;

@@ -164,14 +164,10 @@ page{
 }
 /* 新华课点 */
 .section2-left{
-  width: 50%;
   overflow: hidden;
   background-color: white;
-  flex: 1 1 50%;
-  margin-right: 10rpx;
   border-radius: 8rpx;
   padding: 20rpx;
-  display: flex;
 }
 .section2-right{
   overflow: hidden;

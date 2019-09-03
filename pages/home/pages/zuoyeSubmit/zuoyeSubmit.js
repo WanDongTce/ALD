@@ -43,9 +43,15 @@ Page({
         // console.log(that.data.subjectid)
     },
   onShow: function () {
-      
-
-      
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.customMethod()
+  },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
   },
     
     addImg: function () {
@@ -139,13 +145,10 @@ Page({
                                 "images_json": JSON.stringify(arrimg)
                             },
                             success: function (resnew) {
-                              console.log(resnew);
-
                                 wx.hideLoading();
                                 if (resnew.data.code == 200) {
-                                  console.log(resnew);
                                     wx.navigateBack({
-                                      delta:1
+
                                     })
                                 } else {
                                     wx.showToast({

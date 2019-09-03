@@ -9,7 +9,7 @@
             <view class="cont">
                 <view class="head">
                     <view class="lt">
-                        <view class="h1">{{idname}}学习体验卡</view>
+                        <view class="h1">{{idname}}学习体验卡 (月卡)</view>
                     </view>
                     <view class="price">{{item.type}}</view>
                 </view>

@@ -513,10 +513,30 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding-bottom: 40rpx;
+position: relative;
 }
 .popwrap-img{
   margin-bottom: 30rpx;
   overflow: hidden;
+}
+.text{
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #333;
+}
+.text .num{
+  color:#16b7ff;
+  font-size: 80rpx;
+  font-weight: 700;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+}
+.popwrap-close{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  height: 32rpx;
+  width: 32rpx;
 }
 .pop-text{
   font-size: 28rpx;

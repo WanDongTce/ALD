@@ -1,4 +1,7 @@
 <compontNavbar title="消息" isShowBack="{{false}}" url="" component-class="component-class"></compontNavbar>
+<my-component id='component'>
+   
+  </my-component>
 <block>
     <view class="list">
         <navigator class="item" url="/pages/my/pages/onlineSevDetail/onlineSevDetail?info={}">
@@ -33,8 +36,8 @@
         </view>
     </view>
 
-    <view class="aside">
+    <!-- <view class="aside">
         <image src="{{base}}images/create.png" catchtap="toCreate"></image>
         <image src="{{base}}images/list.png" catchtap="toFrdList"></image>
-    </view>
+    </view> -->
 </block>

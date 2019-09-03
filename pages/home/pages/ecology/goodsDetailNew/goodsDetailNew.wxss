@@ -191,7 +191,7 @@ page{
   background-color:#fff;
 }
 .bottom_right{
-  background-color:#48ba49;
+  background-color:#4bace2;
   border-radius:5rpx;
   height:74rpx;
   line-height: 74rpx;

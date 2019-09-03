@@ -20,8 +20,8 @@ Page({
         this.compontNavbar = this.selectComponent("#compontNavbar");
         var a = JSON.parse(options.info); 
         info = a;
-      // console.log(info);
-      var title = info.title || info.nianjistr;
+        var title = info.nianjistr||info.title;
+        console.log(title);
         var that = this;
         var size = that.setCanvasSize();
         // console.log(size);
@@ -39,13 +39,21 @@ Page({
         that.showShareImg()
     },
     onShow: function () {
-
+      var that = this;
+      that.component = that.selectComponent("#component")
+      that.component.customMethod()
     },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
+  },
     //分享图片事件
     //事件处理函数
     showShareImg: function () {
         // console.log(typeof info);
-      var title = info.title || info.nianjistr;
+        var title = info.nianjistr||info.title;
         this.setData({ visible: true,title: title, gameurl: info.dizhi })
     },
     closeShareImg: function () {

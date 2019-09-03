@@ -11,9 +11,6 @@ var ceshu = 4;
 
 Page({
     data: {
-      show: {
-        middle: false
-      },
         base: '../../../../',
         isShowOptions: false,
         list: [],
@@ -27,7 +24,16 @@ Page({
     onShow: function () {
         var that = this;
         that.getContList(true);
+
+      that.component = that.selectComponent("#component")
+      that.component.customMethod()
     },
+  onHide: function () {
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
+  },
     getContList: function (contaFlag) {
         var that = this;
         network.POST({
@@ -91,36 +97,6 @@ Page({
             }
         }
     },
-  //提示会员是否到期
-  onTransitionEnd() {
-    // console.log(`You can't see me 🌚`);
-  },
-  toggle(type) {
-    this.setData({
-      [`show.${type}`]: !this.data.show[type]
-    });
-  },
-
-  togglePopup() {
-    this.toggle('middle');
-  },
-  noBuy: function () {
-    this.toggle('middle');
-  },
-  goBuy: function () {
-    wx.navigateTo({
-      url: '/pages/my/pages/memberRenewalNewPay/memberRenewalNewPay'
-    });
-  },
-  //判断会员是否过期
- 
-  onHide: function () {
-    this.setData({
-      show: {
-        middle: false
-      }
-    });
-  },
     showOptions() {
         this.setData({
             isShowOptions: true
@@ -150,68 +126,77 @@ Page({
         return timestamp
     },
     toDetail(e){
-        this.isExpires(e); 
-        // var a = e.currentTarget.dataset;
-        // console.log(a);
-        // var start_time = Date.parse(new Date())/1000;
-        // var end_time = start_time+5;
+        // this.memberExpires(e);
+        var a = e.currentTarget.dataset;
+        console.log(a);
+        var start_time = Date.parse(new Date())/1000;
+        var end_time = start_time+5;
         
-        // // (type, typeid, start_time, end_time, callback, errCallback)
-        // network.getAddStudyRecord(1, a.id, start_time, end_time,function (res) {
-        //     wx.hideLoading();
-        //     if (res.data.code == 200) {
-        //         wx.navigateTo({
-        //             url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
-        //         })
-        //     }
-        //     else {
-        //         wx.showToast({
-        //             title: res.data.message,
-        //             icon: 'none',
-        //             duration: 1000
-        //         })
-        //     }
-        // }, function () {
-        //     wx.hideLoading();
-        //     wx.showToast({
-        //         title: '服务器异常',
-        //         icon: 'none',
-        //         duration: 1000
-        //     });
-        // });
-        
-    },
-    isExpires(e) {
-        var that = this;
-        network.memberExpires(function (res) {
-          that.toggle('middle');
-        }, function(res){
-          var a = e.currentTarget.dataset;
-          // console.log(a);
-          var start_time = Date.parse(new Date()) / 1000;
-          var end_time = start_time + 5;
-          network.getAddStudyRecord(1, a.id, start_time, end_time, function (res) {
+        // (type, typeid, start_time, end_time, callback, errCallback)
+        network.getAddStudyRecord(1, a.id, start_time, end_time,function (res) {
             wx.hideLoading();
             if (res.data.code == 200) {
-              wx.navigateTo({
-                url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
-              })
+                wx.navigateTo({
+                    url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
+                })
             }
             else {
-              wx.showToast({
-                title: res.data.message,
-                icon: 'none',
-                duration: 1000
-              })
+                wx.showToast({
+                    title: res.data.message,
+                    icon: 'none',
+                    duration: 1000
+                })
             }
-          }, function () {
+        }, function () {
             wx.hideLoading();
             wx.showToast({
-              title: '服务器异常',
-              icon: 'none',
-              duration: 1000
+                title: '服务器异常',
+                icon: 'none',
+                duration: 1000
             });
-          });
+        });
+        
+    },
+    memberExpires() {
+        var that = this;
+        network.memberExpires(function (res) {
+            // console.log(res);
+            if (res.data.data[0].item.is_end == 1) {
+                wx.showToast({
+                    title: '会员已到期,请续费~',
+                    icon: 'none'
+                });
+            }else{
+                var a = e.currentTarget.dataset;
+                // console.log(a);
+                var start_time = Date.parse(new Date()) / 1000;
+                var end_time = start_time + 5;
+                network.getAddStudyRecord(1, a.id, start_time, end_time, function (res) {
+                    wx.hideLoading();
+                    if (res.data.code == 200) {
+                        wx.navigateTo({
+                            url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
+                        })
+                    }
+                    else {
+                        wx.showToast({
+                            title: res.data.message,
+                            icon: 'none',
+                            duration: 1000
+                        })
+                    }
+                }, function () {
+                    wx.hideLoading();
+                    wx.showToast({
+                        title: '服务器异常',
+                        icon: 'none',
+                        duration: 1000
+                    });
+                });
+                // wx.navigateTo({
+                //     url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
+                // })
+            }
         });
     },
     onUnload: function () {

@@ -20,18 +20,18 @@
 <view class='bigtitle f_32 c_333'>
   <text class='c_gf_bg'></text> 会员权益
 </view>
-<view class="section2">
-  <view class="section2-left">
-    <image mode="widthFix" src="../../images/xhkd@2x.jpg"></image>
+<view class="">
+  <view class="section2">
+    <image class="section2-left" mode="widthFix" src="../../images/xhkd@2x.png"></image>
   </view>
-  <view class="section2-right">
+  <!-- <view class="section2-right">
     <view class="section2-right-image1">
       <image class="section2-right-image1-img" src="../../images/yxl@2x.jpg"></image>
     </view>
     <view class="section2-right-image2">
       <image class="section2-right-image2-img" src="../../images/mxs@2x.jpg"></image>
     </view>
-  </view>
+  </view> -->
 </view>
 <!-- <view class='bigbox1 qy_bigbox'>
     <view class='display-flex align-items-center qy_itembigbox'>

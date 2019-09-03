@@ -1,12 +1,13 @@
 {
+  
   "pages": [
     "pages/main/pages/home/home",
-    "pages/main/pages/index/index",
-   
-    "pages/main/pages/shopping/shopping",
+"pages/public/public",
   
+  "pages/main/pages/shopping/shopping",
     "pages/main/pages/car/car",
     "pages/main/pages/Shopdetails/Shopdetails",
+    
     "pages/main/pages/msg/msg",
     "pages/main/pages/find/find",
     "pages/main/pages/task/task",
@@ -267,22 +268,34 @@
       ]
     },
     {
-      "root": "pages/ailangdu/",
-      "pages": [
-        "pages/readList/readList",
-        "pages/Match/Match",
-        "pages/activity/activity",
-        "pages/recorder/recorder",
-        "pages/confirmend/confirmend",
-        "pages/listen/listen"
-      ]
-    },
-    {
       "root": "pages/link/",
       "pages": [
         "pages/composition/composition",
         "pages/composition/compositionDetail/compositionDetail",
         "pages/emptypage/emptypage"
+        
+      ]
+    },
+    {
+      "root": "pages/Preview/",
+      "pages": [
+        "pages/Preview/Preview",
+        "pages/question/index",
+        "pages/comment/index",
+        "pages/booklist/booklist",
+        "pages/Article/Article"
+          
+      ]
+    },{
+      "root": "pages/meditation/",
+      "pages": [
+        "pages/Preview/Preview",
+        "pages/question/index",
+        "pages/comment/index",
+        "pages/booklist/booklist",
+        "pages/Article/Article",
+        "pages/review/review"
+       
       ]
     }
   ],
@@ -294,13 +307,14 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
+    "navbar": "/component/navigation/navigation",
     "van-overlay": "/component/overlay/index",
     "van-popup": "/component/popup/index",
     "van-transition": "/component/transition/index",
     "van-button": "/component/button/index",
     "van-loading": "/component/loading/index",
     "van-progress": "/component/progress/index",
-    "navbar": "/component/navigation/navigation"
+    "my-component": "/pages/public/public"
   },
   "tabBar": {
     "color": "#333",
@@ -315,10 +329,22 @@
         "selectedIconPath": "images/tabBtom/home.png"
       },
       {
-        "pagePath": "pages/main/pages/Shopdetails/Shopdetails",
-        "text": "店铺",
+        "pagePath": "pages/main/pages/msg/msg",
+        "text": "消息",
+        "iconPath": "images/tabBtom/msg2.png",
+        "selectedIconPath": "images/tabBtom/msg.png"
+      },
+      {
+        "pagePath": "pages/main/pages/shopping/shopping",
+        "text": "商铺",
         "iconPath": "images/tabBtom/task2.png",
         "selectedIconPath": "images/tabBtom/task.png"
+      },
+      {
+        "pagePath": "pages/main/pages/find/find",
+        "text": "发现",
+        "iconPath": "images/tabBtom/find2.png",
+        "selectedIconPath": "images/tabBtom/find.png"
       },
       {
         "pagePath": "pages/main/pages/my/my",
@@ -337,4 +363,5 @@
     "wxd2c2aa1e2850534b"
   ],
   "sitemapLocation": "sitemap.json"
+  
 }

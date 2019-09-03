@@ -1,13 +1,19 @@
+var ss = ""
+var list = []
 App({
     requestUrl: 'https://social.54xuebaxue.com/',
     imgUrl: 'https://m.54xuebaxue.com/wx_img/',
     ansHref: 'https://m.54xuebaxue.com/question/my-answer-list',
     quesHref: 'https://m.54xuebaxue.com/question/detail', 
 
+
+
     // requestUrl: 'http://social.test.54xuebaxue.com/',
     // imgUrl: 'http://m.test.54xuebaxue.com/wx_img/',
     // ansHref: 'http://m.test.54xuebaxue.com/question/my-answer-list',
     // quesHref: 'http://m.test.54xuebaxue.com/question/detail',
+    //预习乐
+    questionUrl: 'http://yuxile.54xuebaxue.com/',
 
     idname:'学霸学',
     // idname: '弹个课',
@@ -77,6 +83,15 @@ App({
     GROUP_Info: {},
     getPrePageGroupHistroyMsgInfoMap: {},//群聊历史
     getPrePageC2CHistroyMsgInfoMap: {},//私聊历史
+    questionOptions: {
+      id: 0,  //课文id
+      list: [],
+      currentId: 0,
+      results: [],
+      progress: 0,
+      count: 0,
+      rightTimes: 0 //分数
+    }, //预习乐数据前端存储
     toLogin: function () {
         wx.reLaunch({
             url: '/pages/common/login/login'
@@ -103,6 +118,10 @@ App({
             }
         });
     },
+    storck:function(){
+
+    }
+  ,
     onShow: function () {
         var that = this;
         that.userInfo = wx.getStorageSync('userInfo');

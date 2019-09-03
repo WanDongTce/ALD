@@ -1,5 +1,6 @@
 // pages/course/course.js
 const network = require("../../../../utils/main.js");
+const moment = require("../../../../utils/moment.js");
 const app = getApp();
 var pagesize = 20;
 var page = 1;
@@ -24,6 +25,9 @@ Page({
       list: [],
       selectedTab: subId,
       showEmpty: false,
+    freeTime: 0, //新注册号免费试用
+    videoId: 0,
+    videoPic: ''
       
   },
 
@@ -72,7 +76,9 @@ Page({
        hasmore = null;
        nianjiid = '';
       that.getList(false);
-      
+    var that = this;
+    that.component = that.selectComponent("#component")
+    that.component.customMethod()
   },
     swiScrollTab: function (e) {
         subId = e.currentTarget.dataset.index;
@@ -181,7 +187,13 @@ Page({
     this.toggle('middle');
   },
   noBuy: function () {
+    let that = this;
     this.toggle('middle');
+    if (this.freeTry()) {
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + that.data.videoId + '&videopic=' + that.data.videoPic,
+      });
+    }
   },
   goBuy: function () {
     wx.navigateTo({
@@ -189,54 +201,53 @@ Page({
     });
   },
   //判断会员是否过期
-  isExpires: function (e) {
-    var that = this;
-    network.memberExpires(function (res) {
-      that.toggle('middle');
-    }, function (res) {
-      //如果没过期直接进入详情页
-      wx.navigateTo({
-        url: '/pages/home/pages/course/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
-      })
-    })
-  },
+
   onHide: function () {
     this.setData({
       show: {
         middle: false
       }
     });
+    var that = this
+    that.component = that.selectComponent("#component")
+    that.component.noShow()
+    that.component.nohide()
   },
-    tz_detail: function (e) {
-        // var start_time = Date.parse(new Date()) / 1000;
-        // var end_time = start_time + 5;
-        // network.getAddStudyRecord(1, a.id, start_time, end_time, function (res) {
-        //     wx.hideLoading();
-        //     if (res.data.code == 200) {
-        //         wx.navigateTo({
-        //             url: '/pages/common/webView/webView?src=' + a.href + '&getpointype=1&studyid=' + a.id
-        //         })
-        //     }
-        //     else {
-        //         wx.showToast({
-        //             title: res.data.message,
-        //             icon: 'none',
-        //             duration: 1000
-        //         })
-        //     }
-        // }, function () {
-        //     wx.hideLoading();
-        //     wx.showToast({
-        //         title: '服务器异常',
-        //         icon: 'none',
-        //         duration: 1000
-        //     });
-        // });
-        
-        wx.navigateTo({
-            url: '/pages/home/pages/course/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
-        })
-    },
+  tz_detail: function (e) {
+    this.memberExpires(e);
+  },
+  freeTry: function () {
+    let that = this;
+    let createTime = app.userInfo.create_time;
+    let start = moment(createTime);
+    let end = moment();
+    let freeTime = end.diff(start, 'days');
+    if (freeTime < 3) {
+      that.setData({
+        freeTime: (3 - freeTime)
+      });
+      return true;
+    } else {
+      //免费试用结束
+      return false;
+    }
+
+  },
+  memberExpires(e) {
+    var that = this;
+    network.memberExpires(function (res) {
+      that.setData({
+        videoId: e.currentTarget.dataset.myid,
+        videoPic: e.currentTarget.dataset.videopic
+      });
+      that.freeTry();
+      that.toggle('middle');
+    }, function (res) {
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
+      })
+    });
+  },
     onUnload: function () {
         page = 1;
         hasmore = null;
