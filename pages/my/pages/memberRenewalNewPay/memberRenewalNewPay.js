@@ -48,7 +48,7 @@ Page({
             });
         } else {
             wx.hideLoading();
-            console.log('以授权过');
+          console.log('以授权过：', app.openId);
             if(app.openId){
                 that.createOrder();
             }
@@ -180,7 +180,7 @@ Page({
                 // "order_type_id": 0,
             },
             success: function (res) {
-                console.log(res);
+                console.log('走',res);
                 wx.hideLoading();
                 if (res.data.code == 200) {
                     that.setData({

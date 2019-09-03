@@ -70,7 +70,7 @@ Page({
     onShow: function () {
       if (this.data.share) {
         wx.switchTab({
-          url: '/pages/main/pages/home/home'
+          url: '/pages/main/pages/Shopdetails/Shopdetails'
         });
       }
     },
@@ -165,7 +165,7 @@ Page({
                         } else {
                           //
                           wx.switchTab({
-                            url: '/pages/main/pages/home/home'
+                            url: '/pages/main/pages/Shopdetails/Shopdetails'
                           });
                         }
 
@@ -265,7 +265,7 @@ Page({
                         // app.userInfo = a;
                         // if (a.step == 8) {
                         //     wx.switchTab({
-                        //         url: '/pages/main/pages/home/home'
+                        //         url: '/pages/main/pages/Shopdetails/Shopdetails'
                         //     });
                         // } else {
                         //     wx.navigateTo({
@@ -304,7 +304,7 @@ Page({
 
                               if (a.step == 8||a.step==1) { //1为扫描自动完善
                                 wx.switchTab({
-                                  url: '/pages/main/pages/home/home'
+                                  url: '/pages/main/pages/Shopdetails/Shopdetails'
                                 });
                               } else {
                                 wx.navigateTo({
@@ -352,7 +352,7 @@ Page({
 
                               if (a.step == 8) {
                                 wx.switchTab({
-                                  url: '/pages/main/pages/home/home'
+                                  url: '/pages/main/pages/Shopdetails/Shopdetails'
                                 });
                               } else {
                                 wx.navigateTo({

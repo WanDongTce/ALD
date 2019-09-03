@@ -938,7 +938,7 @@ function getOpenid(cb) {
         url: 'v14/public/get-opend',
         params: params,
         success: function (res) {
-            // console.log(res);
+            console.log(res);
             wx.hideLoading();
 
             if (res.data.code == 200) {
