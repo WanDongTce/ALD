@@ -23,6 +23,7 @@ page{
   height:34rpx;
   margin-right:30rpx;
 }
+.hide{display: none}
 .topbox_top_img2{
     position: relative;
   width:34rpx;

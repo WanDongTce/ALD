@@ -5,9 +5,12 @@ Page({
     data: {
         base: '../../../../',
         IMGURL: app.imgUrl,
-        showTab: true
+        showTab: true,
+      find: ""
     },
     onLoad: function (options) {
+      var that = this
+      that.getshow()
         this.compontNavbar = this.selectComponent("#compontNavbar");
       if (app.userInfo.mobile == '18647993992') {
         this.setData({
@@ -15,6 +18,24 @@ Page({
         })
       }   
     },
+  getshow: function () {
+    var that = this
+    wx.request({
+      url: app.requestUrl + 'v14/public/display',
+      data: {},
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log(res.data.data[0].list[0].find)
+        that.setData({
+          find: res.data.data[0].list[0].find,
+
+        })
+      }
+    })
+  },
   onShow: function () {
     var that = this;
     that.component = that.selectComponent("#component")

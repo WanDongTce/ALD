@@ -17,6 +17,7 @@ page {
     left:26rpx;
     width:100%;
 }
+.hide{display: none}
 .arrow_switch_imgbox{
     height:10vh;
 }
