@@ -6,7 +6,16 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
@@ -37,9 +46,16 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/common/login/login",
-					"pathName": "pages/common/login/login",
-					"query": "province_id=6&city_id=37&district_id=439&schoolid=109",
+					"name": "会员续费",
+					"pathName": "pages/my/pages/memberRenewalNewPay/memberRenewalNewPay",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/ailangdu/pages/readList/readList",
+					"pathName": "pages/ailangdu/pages/readList/readList",
+					"query": "",
 					"scene": null
 				}
 			]
