@@ -30,7 +30,7 @@
 
 <import src="/template/scrollTab/scrollTab.wxml" />
 <view class='top_fix' bindtap="goSearch">
-    
+
     <view class="content_box">
       <text>搜索关键字</text>
     </view>
@@ -44,7 +44,7 @@
             </swiper-item>
         </block>
     </swiper>
-    
+
 </view>
 <!-- search -->
  <!-- <view class='search display-flex align-items-center'>
