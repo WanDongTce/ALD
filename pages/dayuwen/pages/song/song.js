@@ -5,28 +5,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    flg: false,
   },
-
-  goTo: function(e){
+  goTo: function (e) {
     let url = '/pages/dayuwen/pages/songdetail/songdetail';
-    wx.navigateTo({
-      url: '/pages/dayuwen/pages/songdetail/songdetail'
-    })
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/dayuwen/pages/songdetail/songdetail'
+      })
+    }
+
   },
 
   goTo02: function (e) {
-    
-    wx.navigateTo({
-      url: '/pages/link/pages/composition/composition'
-    })
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/link/pages/composition/composition'
+      })
+    }
+
   },
   goTo03: function (e) {
+    var token = wx.getStorageSync("userInfo")
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/link/pages/emptypage/emptypage'
+      })
+    }
 
-    wx.navigateTo({
-      url: '/pages/link/pages/emptypage/emptypage'
-    })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,6 +61,22 @@ Page({
   topshoop: function () {
     wx.navigateBack({
       delta: 1
+    })
+  },
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
     })
   },
   /**

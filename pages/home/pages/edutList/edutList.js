@@ -1,8 +1,14 @@
 const network = require("../../../../utils/main.js");
+const moment = require("../../../../utils/moment.js");
 var app = getApp();
 
 Page({
     data: {
+      show: {
+        middle: false,
+
+
+      },
         base: '../../../../',
         IMGURL: app.imgUrl,
         teacList: '',
@@ -10,7 +16,8 @@ Page({
         course_gg: '',
         course_wk: '',
         course: '',
-        imgUrls: []
+        imgUrls: [],
+      flg: false,
     },
   onShow: function () {
     var that = this;
@@ -121,12 +128,74 @@ Page({
         url: '/pages/home/pages/courseList/courseList?mytopid=' + e.currentTarget.dataset.mytopid,
       })
     },
-    tz_detail: function (e) {   
-      // console.log(e.currentTarget.dataset)  
+  tz_detail: function (e) {
+    // console.log(e.currentTarget.dataset) 
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      // wx.navigateTo({
+      //   url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
+      // })
+      this.memberExpires(e);
+    }
+
+  },
+  toggle(type) {
+    this.setData({
+      [`show.${type}`]: !this.data.show[type]
+    });
+  },
+  noBuy: function () {
+    let that = this;
+    this.toggle('middle');
+    if (this.freeTry()) {
+      wx.navigateTo({
+        url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + that.data.videoId + '&videopic=' + that.data.videoPic,
+      });
+    }
+  },
+  goBuy: function () {
+    wx.navigateTo({
+      url: '/pages/my/pages/memberRenewalNewPay/memberRenewalNewPay'
+    });
+  },
+  freeTry: function () {
+    let that = this;
+    let createTime = app.userInfo.create_time;
+    let start = moment(createTime);
+    let end = moment();
+    let freeTime = end.diff(start, 'days');
+    if (freeTime < 3) {
+      that.setData({
+        freeTime: (3 - freeTime)
+      });
+      return true;
+    } else {
+      //免费试用结束
+      return false;
+    }
+
+  },
+  memberExpires(e) {
+    console.log(e)
+    var that = this;
+    network.memberExpires(function (res) {
+      that.setData({
+        videoId: e.currentTarget.dataset.myid,
+        videoPic: e.currentTarget.dataset.videopic
+      });
+      that.freeTry();
+      that.toggle('middle');
+    }, function (res) {
       wx.navigateTo({
         url: '/pages/home/pages/courseList/courseDetail/courseDetail?courseid=' + e.currentTarget.dataset.myid + '&videopic=' + e.currentTarget.dataset.videopic,
       })
-    },
+    });
+  },
     getSwipImgs: function () {
       var that = this;
       network.getSwiperImgs(5, function (res) {
@@ -138,4 +207,98 @@ Page({
         }
       });
     },
+  tonav01: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/preview/preview',
+      })
+    }
+  },
+  tonav02: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/think/think',
+      })
+    }
+  },
+  tonav03: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/game/gameList/gameList?gametype=1&title=明日之星',
+      })
+    }
+  },
+  tonav04: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/game/gameList/gameList?gametype=2&title=王者之战',
+      })
+    }
+  },
+  tonav05: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/game/gameList/gameList?gametype=3&title=挑战赛',
+      })
+    }
+  },
+  tonav06: function () {
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/game/gameList/gameList?gametype=4&title=过关斩将',
+      })
+    }
+  },
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
+    })
+  },
 })

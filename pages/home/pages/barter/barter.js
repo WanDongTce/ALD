@@ -18,7 +18,8 @@ Page({
         showEmpty: false,
         showSearch: false,
         refreshFlag: true,
-        base: '../../../../'
+        base: '../../../../',
+      flg: false,
     },
     onLoad: function (options) {
         var that = this;
@@ -204,10 +205,51 @@ Page({
         })
     },
     toRelaeaseBarter: function () {
-        wx.navigateTo({
-            url: '/pages/home/pages/barter/releaseBarter/releaseBarter'
-        })
-    },
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/barter/releaseBarter/releaseBarter'
+      })
+    }
+
+  },
+  tz_classify: function () {
+    wx.navigateTo({
+      url: '/pages/home/pages/barter/classBarter/classBarter'
+    })
+  },
+  onUnload: function () {
+    var that = this;
+    search = '';
+    that.setData({
+      search: '搜索产品名称',
+      showEmpty: false
+    });
+  },
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
+    })
+    console.log(111)
+
+  },
     tz_classify: function () {
         wx.navigateTo({
             url: '/pages/home/pages/barter/classBarter/classBarter'

@@ -10,6 +10,16 @@ Page({
         home_header: "",
         home_middle: ""
       },
+      XBX: "",
+      dictionary: "",
+      homework: "",
+      quality: "",
+      space: "",
+      book: "",
+      bok: "",
+      shop: "",
+      accumulation: "",
+      flg: false,
         base: '../../../../',
         title: '',
         imgUrls: [],
@@ -40,7 +50,7 @@ Page({
         this.empty = this.selectComponent("#empty");
         this.compontNavbar = this.selectComponent("#compontNavbar");
         var that = this;
-      that.getshow()
+      that.setshow()
         that.getSwipImgs();
         this.setData({
             idname:app.idname
@@ -52,22 +62,22 @@ Page({
         })
       }    
     },
-  getshow: function () {
+
+  setshow: function () {
     var that = this
-    wx.request({
-      url: app.requestUrl + 'v14/public/display',
-      data: {},
-      method: "POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        console.log(res.data.data[0].list[0].home_middle)
-        that.setData({
-          home_header: res.data.data[0].list[0].home_header,
-          home_middle: res.data.data[0].list[0].home_middle
-        })
-      }
+    var header = wx.getStorageSync("header")
+    var middle = wx.getStorageSync("middle")
+    console.log(header)
+    that.setData({
+      XBX: header.xbx,
+      dictionary: header.dictionary,
+      homework: header.homework,
+      space: header.space,
+      quality: header.quality,
+      book: middle.book,
+      box: middle.box,
+      shop: middle.shop,
+      accumulation: middle.accumulation
     })
   },
     tz_little: function () {
@@ -82,6 +92,22 @@ Page({
         })
 
     },
+  course: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/course/course?mytopid= 0',
+      })
+    }
+
+  },
     onShow: function() {
         if (app.userInfo.register_community_name) {
             this.setData({
@@ -152,10 +178,19 @@ Page({
         
     },
     judge:function(){
-        var that = this;
-        wx.navigateTo({
-            url: '/pages/home/pages/zuoyeNew/zuoyeNew',
+      var that = this;
+      var token = wx.getStorageSync("userInfo")
+      console.log(token)
+      if (token == "") {
+
+        this.setData({
+          flg: true
         })
+      } else {
+        wx.navigateTo({
+          url: '/pages/home/pages/zuoyeNew/zuoyeNew',
+        })
+      }
 
         // wx.navigateTo({
         //     url: '/pages/home/pages/zuoyeEnter/zuoyeEnter',
@@ -206,6 +241,82 @@ Page({
         // });
         
     },
+
+  broadcast: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/zuoyeNew/zuoyeNew',
+      })
+    }
+  },
+
+  classmate: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/classmate/classmate',
+      })
+    }
+  },
+
+  task: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/main/pages/task/task',
+      })
+    }
+  },
+  toteacherDetail: function (e) {
+    var token = wx.getStorageSync("userInfo")
+    var ido = e.currentTarget.dataset.id
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/teacher/teacherDetail/teacherDetail?id=' + ido
+      })
+    }
+  },
+  integralMall: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+
+      this.setData({
+        flg: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/home/pages/integralMall/integralMall',
+      })
+    }
+  },
     
     
     
@@ -221,11 +332,11 @@ Page({
                     teacList: a,
                 });
             } else {
-                wx.showToast({
-                    title: res.data.message,
-                    icon: 'none',
-                    duration: 1000
-                })
+                // wx.showToast({
+                //     title: res.data.message,
+                //     icon: 'none',
+                //     duration: 1000
+                // })
             }
         }, function() {
             wx.hideLoading();
@@ -351,7 +462,7 @@ Page({
             url: 'v13/ncourse/course-list',
             params: {
                 "mobile": app.userInfo.mobile,
-                "token": app.userInfo.token,
+                // "token": app.userInfo.token,
                 "page": 1,
                 "pagesize": 20,
                 "subjectid": '',
@@ -369,11 +480,11 @@ Page({
                     });
                 } 
                 else {
-                    wx.showToast({
-                        title: res.data.message,
-                        icon: 'none',
-                        duration: 1000
-                    });
+                    // wx.showToast({
+                    //     title: res.data.message,
+                    //     icon: 'none',
+                    //     duration: 1000
+                    // });
                 }
             },
             fail: function () {
@@ -425,7 +536,23 @@ Page({
             }
         }, true);
     },
-    
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
+    })
+  },
     getClassBarter: function() {
         network.POST({
             url: 'v14/easy-goods/type-list',
@@ -443,11 +570,11 @@ Page({
                     });
                     app.classBarter = a;
                 } else {
-                    wx.showToast({
-                        title: res.data.message,
-                        icon: 'none',
-                        duration: 1000
-                    })
+                    // wx.showToast({
+                    //     title: res.data.message,
+                    //     icon: 'none',
+                    //     duration: 1000
+                    // })
                 }
             },
             fail: function() {
@@ -480,11 +607,11 @@ Page({
                     app.goodsType = a;
                     that.getActy();
                 } else {
-                    wx.showToast({
-                        title: res.data.message,
-                        icon: 'none',
-                        duration: 1000
-                    })
+                    // wx.showToast({
+                    //     title: res.data.message,
+                    //     icon: 'none',
+                    //     duration: 1000
+                    // })
                 }
             },
             fail: function() {
@@ -565,8 +692,17 @@ Page({
     },
 
   tz_detail: function (e) {
-    console.log('注册时间：',app.userInfo.create_time)
-    this.memberExpires(e);
+    console.log('注册时间：', app.userInfo.create_time)
+    var token = wx.getStorageSync("userInfo")
+    console.log(token)
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      this.memberExpires(e);
+    }
+
   },
   freeTry: function(){
     let that = this;

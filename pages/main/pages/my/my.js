@@ -8,12 +8,46 @@ Page({
         info: '',
         msgCount: 0,
         showTab: true,
-      my_study: "",
-      my_daily: ""
+    
+      flg: false,
+      homework: "",
+      question: "",
+      answer: "",
+      note: "",
+      course: "",
+      correction: "",
+      card: "",
+      renew: "",
+      extention: "",
+      recommender: "",
+      record: "",
+      supervise: "",
+      qualitysun: "",
+      transaction: "",
+      school: "",
+      order: "",
+      shop: "",
+      gift: "",
+      mine_study: "",
+      mine_member: "",
+      mine_order: "",
+      mine_dayli: "",
     },
+  loginshow: function () {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
+
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    }
+  },
+
     onLoad(){
       var that = this
-      that.getshow()
+     
+      that.setshow()
         this.compontNavbar = this.selectComponent("#compontNavbar");
       if (app.userInfo.mobile == '18647993992') {
         this.setData({
@@ -21,23 +55,35 @@ Page({
         })
       }  
     },
-  getshow: function () {
+  setshow: function () {
     var that = this
-    wx.request({
-      url: app.requestUrl + 'v14/public/display',
-      data: {},
-      method: "POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        console.log(res.data.data[0].list[0].my_daily)
-        that.setData({
-          my_study: res.data.data[0].list[0].my_study,
-          my_daily: res.data.data[0].list[0].my_daily,
 
-        })
-      }
+    var mine = wx.getStorageSync("mine")
+    console.log(mine.mine_member.card)
+    that.setData({
+      homework: mine.mine_study.homework,
+      question: mine.mine_study.question,
+      answer: mine.mine_study.answer,
+      note: mine.mine_study.note,
+      course: mine.mine_study.course,
+      correction: mine.mine_study.correction,
+      card: mine.mine_member.card,
+      renew: mine.mine_member.renew,
+      extention: mine.mine_member.extention,
+      recommender: mine.mine_member.recommender,
+      record: mine.mine_money.record,
+      supervise: mine.mine_dayli.supervise,
+      qualitysun: mine.mine_dayli.quality,
+      transaction: mine.mine_dayli.transaction,
+      school: mine.mine_dayli.school,
+      order: mine.mine_order.order,
+      shop: mine.mine_order.shop,
+      gift: mine.mine_order.gift,
+      mine_study: mine.mine_study.mine_study,
+      mine_member: mine.mine_member.mine_member,
+      mine_money: mine.mine_money.mine_money,
+      mine_dayli: mine.mine_dayli.mine_dayli,
+      mine_order: mine.mine_order.mine_order
     })
   },
   onHide: function () {
@@ -51,9 +97,31 @@ Page({
         var that = this;
         that.getUserInfo(); 
         that.getMsg();
+      that.loginshow()
       that.component = that.selectComponent("#component")
       that.component.customMethod()
     },
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
+    })
+    console.log(111)
+    wx.switchTab({
+      url: '/pages/main/pages/home/home'
+    });
+  },
     getUserInfo: function () {
         var that = this;
         network.getUserInfo(function(res){
@@ -65,11 +133,11 @@ Page({
                     info: a
                 });
             } else {
-                wx.showToast({
-                    title: res.data.message,
-                    icon: 'none',
-                    duration: 1000
-                });
+                // wx.showToast({
+                //     title: res.data.message,
+                //     icon: 'none',
+                //     duration: 1000
+                // });
             }
         });
     },

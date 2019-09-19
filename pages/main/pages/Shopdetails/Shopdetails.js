@@ -20,7 +20,8 @@ Page({
     sopid: "",
     imgurl: [],
     type_list: [],
-    hh:""
+    hh:"",
+    flg: false,
 
   },
 
@@ -29,6 +30,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    that.getshow()
     // console.log(that.length)
     var postId = options.id
     console.log(postId)
@@ -37,7 +39,7 @@ Page({
     })
     that.getlist();
     that.getheight();
-    that.shangpin()
+   
   },
   getheight:function(){
     var wh;
@@ -131,15 +133,40 @@ Page({
       }
     });
   },
-
+  getshow: function () {
+    var that = this
+    wx.request({
+      url: app.requestUrl + 'v14/public/switch',
+      data: {},
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log(res)
+        var header = JSON.parse(res.data.data[0].list[0].header);
+        var middle = JSON.parse(res.data.data[0].list[0].middle);
+        var mine = JSON.parse(res.data.data[0].list[0].mine);
+        wx.setStorageSync("header", header)
+        wx.setStorageSync("middle", middle)
+        wx.setStorageSync("mine", mine)
+       
+        // that.setData({
+        //   home_header: res.data.data[0].list[0].home_header,
+        // home_middle: res.data.data[0].list[0].home_middle
+        // })
+      }
+    })
+  },
+  
   shangpin: function () {
     var _this = this
     network.POST({
 
       url: 'v13/shop-goods/index',
       params: {
-        "mobile": app.userInfo.mobile,
-        "token": app.userInfo.token,
+        // "mobile": app.userInfo.mobile,
+        // "token": app.userInfo.token,
         "bid": 50,
         "page":page
 
@@ -151,7 +178,7 @@ Page({
         if (res.data.code == 200) {
 
           var a = res.data.data[0].list;
-
+    console.log(res)
           for (var i = 0; i < a.length; i++) {
             yucunlisr.push(a[i])
           }
@@ -181,55 +208,81 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
+  tolgon: function () {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/common/login/login',
+    })
+    that.setData({
+      flg: false
+    })
+  },
+
+  nonelgon: function () {
+    var that = this
+
+    that.setData({
+      flg: false
+    })
+  },
   addCount: function (e) {
+    var that = this;
+    var token = wx.getStorageSync("userInfo")
 
-    const index = e.currentTarget.dataset.id;
-    let carts = this.data.list_sun;
-    let sid = ""
-    carts = carts.map(function (item) {
-      if (item.id == index) {
-        item.cart_num = parseInt(item.cart_num) + 1
-        sid = item.s_id
-      }
+    if (token == "") {
+      this.setData({
+        flg: true
+      })
+    } else {
+      const index = e.currentTarget.dataset.id;
+      let carts = this.data.list_sun;
+      let sid = ""
+      carts = carts.map(function (item) {
+        if (item.id == index) {
+          item.cart_num = parseInt(item.cart_num) + 1
+          sid = item.s_id
+        }
 
-      return item;
-    })
+        return item;
+      })
 
-    this.setData({
-      list_sun: carts
-    })
-    network.POST({
+      this.setData({
+        list_sun: carts
+      })
+      network.POST({
 
-      url: 'v13/shop-cart/add',
-      params: {
-        "mobile": app.userInfo.mobile,
-        "token": app.userInfo.token,
-        "num": 1,
-        "s_id": sid
+        url: 'v13/shop-cart/add',
+        params: {
+          "mobile": app.userInfo.mobile,
+          "token": app.userInfo.token,
+          "num": 1,
+          "s_id": sid
 
-      },
-      success: function (res) {
+        },
+        success: function (res) {
 
-        wx.hideLoading();
+          wx.hideLoading();
 
-        if (res.data.code == 200) {
-        } else {
+          if (res.data.code == 200) {
+          } else {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 1000
+            })
+          }
+        },
+        fail: function () {
+          wx.hideLoading();
           wx.showToast({
-            title: res.data.message,
+            title: '服务器异常',
             icon: 'none',
             duration: 1000
           })
         }
-      },
-      fail: function () {
-        wx.hideLoading();
-        wx.showToast({
-          title: '服务器异常',
-          icon: 'none',
-          duration: 1000
-        })
-      }
-    });
+      });
+    }
+
   },
 
 
@@ -349,6 +402,8 @@ Page({
   },
   onShow: function () {
     var that = this;
+    yucunlisr=[]
+    that.shangpin()
     that.component = that.selectComponent("#component")
     that.component.customMethod()
   },
