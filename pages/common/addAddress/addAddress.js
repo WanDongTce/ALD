@@ -137,7 +137,7 @@ Page({
                 wx.hideLoading();
                 if (res.data.code == 200) {
                     wx.navigateTo({
-                        url: "/pages/common/address/address",
+                      url: "/pages/home/pages/periphery/confirmOrder/confirmOrder",
                         complete(err) {
                             // console.log(err);
                             if (err.errMsg == 'navigateTo:fail webview count limit exceed') {

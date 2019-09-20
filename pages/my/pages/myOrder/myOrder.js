@@ -43,6 +43,7 @@ Page({
     },
     getList: function (typenum, page, flag) {
         var that = this;
+      console.log(typenum)
         network.POST({
             url: 'v13/shop-order/list',
             params: {
