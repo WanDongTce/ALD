@@ -201,7 +201,8 @@ Page({
                 "token": app.userInfo.token,
                 "idsn": that.data.ordersn_pay,
                 "type": 3,
-                "openid": app.openId
+                "openid": app.openId,
+              "mini_type": 8
             },
             success: function (res) {
                 console.log(res);

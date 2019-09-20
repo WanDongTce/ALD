@@ -49,6 +49,7 @@ Page({
         } else {
             wx.hideLoading();
           console.log('以授权过：', app.openId);
+          console.log(app)
             if(app.openId){
                 that.createOrder();
             }
@@ -69,6 +70,7 @@ Page({
     getOpenid:function(){
         var that = this;
         network.getOpenid(function () {
+          console.log(111) 
             that.createOrder();
         });
 
@@ -216,7 +218,8 @@ Page({
                 "token": app.userInfo.token,
                 "idsn": that.data.payinfo.order_sn,
                 "type": 3,
-                "openid": app.openId
+                "openid": app.openId,
+              "mini_type": 8
             },
             success: function (res) {
                 console.log(res);

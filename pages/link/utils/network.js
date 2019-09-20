@@ -472,7 +472,7 @@ function getOpenid(cb) {
     params.code = app.code;
     params.encryptedData = app.uinfo.encryptedData;
     params.iv = app.uinfo.iv;
-
+  params.mini_types = 'sijiantao'
     // console.log(params);
     POST({
         url: 'v14/public/get-opend',
