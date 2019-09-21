@@ -469,7 +469,7 @@ Page({
       })
     } else {
       var ids = JSON.stringify(network.arrToObj(list));
-   
+      wx.setStorageSync('ids', ids)
       network.POST({
         url: 'v13/shop-order/go-buy',
         params: {

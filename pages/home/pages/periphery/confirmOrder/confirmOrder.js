@@ -128,6 +128,7 @@ Page({
         });
     },
     buyFromGift() {
+      ids=wx.getStorageSync("ids")
         var that = this;
         network.POST({
             url: 'v13/shop-order/go-buy-confirm',
