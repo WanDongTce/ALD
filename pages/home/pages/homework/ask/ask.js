@@ -3,7 +3,7 @@ const app = getApp();
 
 var gradeId = '';
 var subjectId = '';
-
+var access_token
 
 Page({
     data: {
@@ -19,8 +19,30 @@ Page({
     },
   onShow: function () {
     var that = this;
+    that.gettoken()
     that.component = that.selectComponent("#component")
     that.component.customMethod()
+  },
+  gettoken: function () {
+    var userInfo = wx.getStorageSync('userInfo')
+    var userid = userInfo.id
+    console.log(userid)
+    wx.request({
+      url: app.requestUrl + 'v14/public/get-new-token',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        'userid': userid,
+        "mini_type": 'sijiantao'
+
+      },
+      success: function (res) {
+        console.log(res.data.data[0].access_token)
+        access_token = res.data.data[0].access_token
+      }
+    })
   },
   onHide: function () {
     var that = this;
@@ -134,21 +156,40 @@ Page({
             content: a
         });
     },
-    submit: function () {
-        var that = this;
-        if (that.valid()) {
-            var list = that.data.imgList;
-            var content = that.data.content;
-            var point = that.data.point;
+  submit: function () {
+    var that = this;
 
+    if (that.valid()) {
+      var list = that.data.imgList;
+      var content = that.data.content;
+      var point = that.data.point;
+      console.log(list, content, point)
+
+
+      wx.request({
+        url: 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + access_token,
+        data: {
+          media: list
+        },
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/octet-stream'
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.errcode == 0) {
             if (that.data.imgList.length == 0) {
-                that.submitFn(content, point);
+              that.submitFn(content, point);
             } else {
-                app.showLoading();
-                that.uploadImgs(list, content, point);
+              app.showLoading();
+              that.uploadImgs(list, content, point);
             }
+          }
         }
-    },
+      })
+
+    }
+  },
     uploadImgs: function (list, content, point) {
         var that = this;
         network.upload('v14/question/add', list, {

@@ -4,7 +4,7 @@ const app = getApp();
 
 var selectClssId = '';
 var districtId = '';
-
+var access_token
 
 
 Page({
@@ -22,6 +22,8 @@ Page({
     },
     onShow: function(){
         var a = wx.getStorageSync('selectedBarClss');
+      var that = this
+      that.gettoken()
         if (a) {
             selectClssId = a.id;
             this.setData({
@@ -86,47 +88,96 @@ Page({
             });
         }
     },
-    submit: function () {
-        var that = this;
-        var list = that.data.imgList;
-        // console.log(list);
-        var content = that.data.msg;
-        var tit = that.data.tit;
-        var status = that.data.releasestatus;
+  gettoken: function () {
+    var userInfo = wx.getStorageSync('userInfo')
+    var userid = userInfo.id
+    console.log(userid)
+    wx.request({
+      url: app.requestUrl + 'v14/public/get-new-token',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        'userid': userid,
+        "mini_type": 'sijiantao'
 
-        if (!tit) {
-            wx.showToast({
-                title: '请输入标题',
-                icon: 'none',
-                duration: 1000
+      },
+      success: function (res) {
+        console.log(res.data.data[0].access_token)
+        access_token = res.data.data[0].access_token
+      }
+    })
+  },
+  submit: function () {
+    var that = this;
+    var list = that.data.imgList;
+    // console.log(list);
+    var content = that.data.msg;
+    var tit = that.data.tit;
+    var status = that.data.releasestatus;
+
+    if (!tit) {
+      wx.showToast({
+        title: '请输入标题',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else if (!content) {
+      wx.showToast({
+        title: '请输入内容',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else if (list.length == 0) {
+      wx.showToast({
+        title: '请添加图片',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else if (!selectClssId) {
+      wx.showToast({
+        title: '请选择分类',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else {
+      wx.request({
+        url: 'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' + access_token,
+        data: {
+          "content": content + tit
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          if (res.data.errcode == 0) {
+            wx.request({
+              url: 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + access_token,
+              data: {
+                media: list
+              },
+              method: 'POST',
+              header: {
+                'Content-Type': 'application/octet-stream'
+              },
+              success: function (ress) {
+                if (ress.data.errcode == 0) {
+                  app.showLoading();
+                  that.uploadImgs(list, content, tit, status);
+                }
+              }
             })
+
+          }
         }
-        else if (!content) {
-            wx.showToast({
-                title: '请输入内容',
-                icon: 'none',
-                duration: 1000
-            })
-        }
-        else if (list.length == 0){
-            wx.showToast({
-                title: '请添加图片',
-                icon: 'none',
-                duration: 1000
-            })
-        }
-        else if (!selectClssId){
-            wx.showToast({
-                title: '请选择分类',
-                icon: 'none',
-                duration: 1000
-            })
-        } 
-        else {
-            app.showLoading();
-            that.uploadImgs(list, content, tit, status);
-        }
-    },
+      })
+
+    }
+  },
     uploadImgs: function (list, content, tit, status) {
         var that = this;
         network.upload('v14/easy-goods/create', list, {

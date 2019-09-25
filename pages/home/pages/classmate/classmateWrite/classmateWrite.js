@@ -4,6 +4,7 @@ const app = getApp();
 var i = 0;
 var flag = true;
 var uploadStyle='';//1为图片，2为视频
+var access_token
 Page({
     data: {
         imgList: [],
@@ -57,8 +58,30 @@ Page({
     },
   onShow: function () {
     var that = this;
+    that.gettoken()
     that.component = that.selectComponent("#component")
     that.component.customMethod()
+  },
+  gettoken: function () {
+    var userInfo = wx.getStorageSync('userInfo')
+    var userid = userInfo.id
+    console.log(userid)
+    wx.request({
+      url: app.requestUrl + 'v14/public/get-new-token',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        'userid': userid,
+        "mini_type": 'sijiantao'
+
+      },
+      success: function (res) {
+        console.log(res.data.data[0].access_token)
+        access_token = res.data.data[0].access_token
+      }
+    })
   },
   onHide: function () {
     var that = this;
@@ -142,50 +165,98 @@ Page({
         videoList: a
       });
     },
-    submit: function () {
-        var that = this;
-        // var list = that.data.imgList;
-        // console.log(list);
-        var content = that.data.msg;
-        if (!content) {
-            wx.showToast({
-                title: '请输入内容',
-                icon: 'none',
-                duration: 1000
-            })
-        }
-        else if (that.data.ifchoicetopic == "选择话题") {
-            wx.showToast({
-                title: '请选择话题',
-                icon: 'none',
-                duration: 1000
-            })
-        }
-        else {
-            app.showLoading();
-            flag = false;
-            // that.uploadImgs(list, content);
-            if(that.data.imgList.length>0){
-              var uploadlist = that.data.imgList;
-              var uploadStyle = 1;
-              //有图片直接
-              that.uploadImgs(that.data.imgList, content);            
-            }
-            else if (that.data.videoList.length > 0){
-              var uploadlist = that.data.videoList;
-              var uploadStyle = 2;
-              //有视频先upload
-              that.newupload(uploadlist);         
-            }
-            else{
-              //无视频 图片，直接上传
-              that.setData({
-                videourl: ''
+  submit: function () {
+    var that = this;
+    // var list = that.data.imgList;
+    // console.log(list);
+    var content = that.data.msg;
+    if (!content) {
+      wx.showToast({
+        title: '请输入内容',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else if (that.data.ifchoicetopic == "选择话题") {
+      wx.showToast({
+        title: '请选择话题',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else {
+      app.showLoading();
+      flag = false;
+      // that.uploadImgs(list, content);
+      if (that.data.imgList.length > 0) {
+        var uploadlist = that.data.imgList;
+        var uploadStyle = 1;
+
+        wx.request({
+          url: 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + access_token,
+          data: {
+            media: uploadlist
+          },
+          method: 'POST',
+          header: {
+            'Content-Type': 'application/octet-stream'
+          },
+          success: function (res) {
+            console.log(res)
+            if (res.data.errcode == 0) {
+              wx.request({
+                url: 'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' + access_token,
+                data: {
+
+                  "content": content
+                },
+                method: 'POST',
+                success: function (ress) {
+                  console.log(ress)
+                  // that.setData({
+                  //   videourl: ''
+                  // })
+                  if (res.data.errcode == 0) {
+                    that.uploadImgs(that.data.imgList, content);
+                  }
+
+                }
               })
-              that.newPublish();
+
             }
-        }
-    },
+          }
+        })
+        //有图片直接
+
+      }
+      else if (that.data.videoList.length > 0) {
+        var uploadlist = that.data.videoList;
+        var uploadStyle = 2;
+        //有视频先upload
+        that.newupload(uploadlist);
+      }
+      else {
+        //无视频 图片，直接上传
+        wx.request({
+          url: 'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' + access_token,
+          data: {
+
+            "content": content
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              videourl: ''
+            })
+
+            that.newPublish();
+          }
+        })
+
+      }
+    }
+  },
     //上传视频
     newupload: function (uploadlist){
       var that=this;
